@@ -68,20 +68,20 @@ constant boolean LIBRARY_asciiTable=true
 //endglobals from asciiTable
 //globals from cmind:
 constant boolean LIBRARY_cmind=true
-boolexpr cmind__crit_num_bexpr
-group cmind__g
-integer cmind__cnum=0
-integer cmind__PL_TG=0
-unit cmind__TARG
-timer cmind__OMTI
-trigger cmind__OMTR
-destructable cmind__de
-real cmind__dist
-unit cmind__ud
-real cmind__Wx=500
-real cmind__Wy=500
-constant integer cmind__Width=25
-integer array cmind__stands
+boolexpr cmind___crit_num_bexpr
+group cmind___g
+integer cmind___cnum=0
+integer cmind___PL_TG=0
+unit cmind___TARG
+timer cmind___OMTI
+trigger cmind___OMTR
+destructable cmind___de
+real cmind___dist
+unit cmind___ud
+real cmind___Wx=500
+real cmind___Wy=500
+constant integer cmind___Width=25
+integer array cmind___stands
 //endglobals from cmind
 //globals from energywall:
 constant boolean LIBRARY_energywall=true
@@ -96,15 +96,15 @@ constant boolean LIBRARY_epicentr=true
 //endglobals from epicentr
 //globals from gamma:
 constant boolean LIBRARY_gamma=true
-integer array gamma__ga
-integer gamma__next=0
-constant real gamma__Dmg=10
-constant real gamma__Dmgadd=10
-constant real gamma__Dis100Add=150
-constant real gamma__Maxang=90
-constant real gamma__Angadd=22
-constant real gamma__Maxdis=600
-constant real gamma__Disadd=25
+integer array gamma___ga
+integer gamma___next=0
+constant real gamma___Dmg=10
+constant real gamma___Dmgadd=10
+constant real gamma___Dis100Add=150
+constant real gamma___Maxang=90
+constant real gamma___Angadd=22
+constant real gamma___Maxdis=600
+constant real gamma___Disadd=25
 //endglobals from gamma
 //globals from indicator:
 constant boolean LIBRARY_indicator=true
@@ -164,8 +164,8 @@ integer svod___next=0
 //endglobals from svod
 //globals from createunittime:
 constant boolean LIBRARY_createunittime=true
-integer array createunittime__cfta
-integer createunittime__nextcft=0
+integer array createunittime___cfta
+integer createunittime___nextcft=0
 //endglobals from createunittime
 //globals from cristals:
 constant boolean LIBRARY_cristals=true
@@ -203,7 +203,7 @@ real engmult=10
 //globals from creeps:
 constant boolean LIBRARY_creeps=true
 leaderboard l
-integer falseStartCountDownInitialSec=120
+integer falseStartCountDownInitialSec=10
 integer falseStartCountDown
 timer spawner
 integer lvlnum=1
@@ -214,21 +214,21 @@ group creepsgro
 integer spawnnummax=8
 integer spawnperiod=10
 player creepsplayer=Player(10)
-group creeps__scangroup
+group creeps___scangroup
 integer nexttarg=0
 integer array targarray
 integer nextresp=0
 integer array resparray
-constant integer creeps__PT_RESPAWN=1
-constant integer creeps__ALL=0
-constant integer creeps__BASE=1
-constant integer creeps__SUBSID=2
-constant integer creeps__PT_TARGET=2
+constant integer creeps___PT_RESPAWN=1
+constant integer creeps___ALL=0
+constant integer creeps___BASE=1
+constant integer creeps___SUBSID=2
+constant integer creeps___PT_TARGET=2
 integer CREEP_TARGET=0x74617267
 integer CREEP_RESP=0x72657370
-integer array creeps__allc
-integer array creeps__basec
-integer array creeps__subc
+integer array creeps___allc
+integer array creeps___basec
+integer array creeps___subc
 integer array MAXLVL
 boolean array WAVE_END
 integer array WAVE_SUBNUM
@@ -269,19 +269,11 @@ rect gg_rct_p2=null
 rect gg_rct_p3=null
 rect gg_rct_p4=null
 rect gg_rct_base=null
-trigger gg_trg_macrotest=null
-trigger gg_trg_playerspawnner=null
-trigger gg_trg_constants=null
 trigger gg_trg_towadd=null
-trigger gg_trg_player=null
-trigger gg_trg_game=null
 trigger gg_trg_towers=null
-trigger gg_trg_CRISTALS=null
 trigger gg_trg_unittimeremove=null
 trigger gg_trg_destruct=null
 trigger gg_trg_indicator_____________________u=null
-trigger gg_trg_molnia=null
-trigger gg_trg_wall=null
 trigger gg_trg_Slow=null
 trigger gg_trg_Effect=null
 trigger gg_trg_missile=null
@@ -289,10 +281,6 @@ trigger gg_trg_Svod=null
 trigger gg_trg_prima=null
 trigger gg_trg_gamma=null
 trigger gg_trg_epicentr=null
-trigger gg_trg_CREEPS=null
-trigger gg_trg_MIND=null
-trigger gg_trg_____________________________________004=null
-trigger gg_trg_createfortime=null
 trigger gg_trg_lowcpu=null
 trigger gg_trg_restart=null
 trigger gg_trg_restart_____________________u=null
@@ -3248,12 +3236,12 @@ endfunction
 //library asciiTable ends
 //library cmind:
 function overmind takes nothing returns nothing
-set cmind__PL_TG=GetRandomInt(0, activeplayer - 1)
-set cmind__TARG=GroupPickRandomUnit(s__gamepr_units[actgpa[cmind__PL_TG]])
-if cmind__TARG == null then
-set cmind__TARG=s__gamepr_u[actgpa[cmind__PL_TG]]
+set cmind___PL_TG=GetRandomInt(0, activeplayer - 1)
+set cmind___TARG=GroupPickRandomUnit(s__gamepr_units[actgpa[cmind___PL_TG]])
+if cmind___TARG == null then
+set cmind___TARG=s__gamepr_u[actgpa[cmind___PL_TG]]
 endif
-call TimerStart(cmind__OMTI, GetRandomReal(15, 30), false, function overmind)
+call TimerStart(cmind___OMTI, GetRandomReal(15, 30), false, function overmind)
 endfunction
 function cmindtarget takes unit u returns nothing
 local integer i
@@ -3268,27 +3256,27 @@ call IssuePointOrder(u, "move", GetUnitX(s__prima_u[Prima[i]]), GetUnitY(s__prim
 set s__UnitDataStruct_prima[p]=true
 return
 endif
-set i=cmind__PL_TG
+set i=cmind___PL_TG
 if s__gamepr_krestis[actgpa[i]] == false and GroupPickRandomUnit(s__gamepr_units[actgpa[i]]) == null then
 call overmind()
 endif
-if IsUnitDeadBJ(cmind__TARG) then
+if IsUnitDeadBJ(cmind___TARG) then
 call overmind()
 endif
-set i=cmind__PL_TG
+set i=cmind___PL_TG
 if s__gamepr_krestis[actgpa[i]] == false and GetRandomInt(0, 2) >= 1 then
 call IssuePointOrder(u, "attack", GetUnitX(s__gamepr_u[actgpa[i]]), GetUnitY(s__gamepr_u[actgpa[i]]))
 else
-if cmind__TARG == null then
-set cmind__TARG=GroupPickRandomUnit(creepsgro)
+if cmind___TARG == null then
+set cmind___TARG=GroupPickRandomUnit(creepsgro)
 endif
-call IssuePointOrder(u, "attack", GetUnitX(cmind__TARG), GetUnitY(cmind__TARG))
+call IssuePointOrder(u, "attack", GetUnitX(cmind___TARG), GetUnitY(cmind___TARG))
 endif
 endfunction
-function targroup takes group l__cmind__g returns nothing
+function targroup takes group l__cmind___g returns nothing
 local group gg=CreateGroup()
 local unit u
-call GroupAddGroup(l__cmind__g, gg)
+call GroupAddGroup(l__cmind___g, gg)
 loop
 set u=FirstOfGroup(gg)
 exitwhen u == null
@@ -3301,30 +3289,30 @@ call DestroyGroup(gg)
 set gg=null
 set u=null
 endfunction
-function cmind__crit_num takes nothing returns boolean
+function cmind___crit_num takes nothing returns boolean
 if GetOwningPlayer(GetFilterUnit()) == creepsplayer then
-set cmind__cnum=cmind__cnum + 1
+set cmind___cnum=cmind___cnum + 1
 endif
 return false
 endfunction
 function critical_num_of_creeps_in_area takes unit u returns boolean
-set cmind__cnum=0
-call GroupEnumUnitsInRange(cmind__g, GetUnitX(u), GetUnitY(u), 190, cmind__crit_num_bexpr)
-if cmind__cnum >= 8 then
+set cmind___cnum=0
+call GroupEnumUnitsInRange(cmind___g, GetUnitX(u), GetUnitY(u), 190, cmind___crit_num_bexpr)
+if cmind___cnum >= 8 then
 return true
 endif
 return false
 endfunction
 function destr takes nothing returns nothing
 local destructable ede=GetEnumDestructable()
-local real edist=DistanceBetweenWidgets(ede , cmind__ud)
-if cmind__de == null then
-set cmind__de=ede
-set cmind__dist=edist
+local real edist=DistanceBetweenWidgets(ede , cmind___ud)
+if cmind___de == null then
+set cmind___de=ede
+set cmind___dist=edist
 else
-if cmind__dist > edist then
-set cmind__de=ede
-set cmind__dist=edist
+if cmind___dist > edist then
+set cmind___de=ede
+set cmind___dist=edist
 endif
 endif
 set ede=null
@@ -3336,20 +3324,20 @@ endfunction
 function destroyDestructable takes unit u returns nothing
 local real r=350
 local integer p
-set cmind__ud=u
-set cmind__de=null
-set cmind__dist=0
+set cmind___ud=u
+set cmind___de=null
+set cmind___dist=0
 call EnumDestructablesInRect(Rect(GetUnitX(u) - r, GetUnitY(u) - r, GetUnitX(u) + r, GetUnitY(u) + r), null, function destr)
-if cmind__de != null then
+if cmind___de != null then
 set p=GetUnitUserData(u)
-call IssueTargetOrder(u, "attack", cmind__de)
+call IssueTargetOrder(u, "attack", cmind___de)
 endif
 endfunction
 function getstands takes integer index1,integer index2 returns integer
-return cmind__stands[index1 * cmind__Width + index2]
+return cmind___stands[index1 * cmind___Width + index2]
 endfunction
 function setstands takes integer index1,integer index2,integer i returns nothing
-set cmind__stands[index1 * cmind__Width + index2]=i
+set cmind___stands[index1 * cmind___Width + index2]=i
 endfunction
 function enumerateDestructableAndDestroy takes nothing returns nothing
 local destructable ede=GetEnumDestructable()
@@ -3371,8 +3359,8 @@ local real minx=GetRectMinX(GetPlayableMapRect())
 local real miny=GetRectMinY(GetPlayableMapRect())
 local real xx=x + ( - minx )
 local real yy=y + ( - miny )
-local real dex=xx / cmind__Wx
-local real dey=yy / cmind__Wy
+local real dex=xx / cmind___Wx
+local real dey=yy / cmind___Wy
 local integer d1=R2I(dex)
 local integer d2=R2I(dey)
 call setstands(d1 , d2 , getstands(d1 , d2) + 1)
@@ -3412,32 +3400,32 @@ call destroyDestructable(u)
 endif
 endif
 endfunction
-function cmind__minus takes nothing returns nothing
+function cmind___minus takes nothing returns nothing
 local integer i=0
 loop
-exitwhen i == cmind__Width * cmind__Width
-if cmind__stands[i] > 0 then
-set cmind__stands[i]=cmind__stands[i] - 1
+exitwhen i == cmind___Width * cmind___Width
+if cmind___stands[i] > 0 then
+set cmind___stands[i]=cmind___stands[i] - 1
 endif
 set i=i + 1
 endloop
 endfunction
-function cmind__init takes nothing returns nothing
+function cmind___init takes nothing returns nothing
 local real minx
 local real miny
 local real mapx
 local real mapy
-set cmind__g=CreateGroup()
-set cmind__crit_num_bexpr=Filter(function cmind__crit_num)
+set cmind___g=CreateGroup()
+set cmind___crit_num_bexpr=Filter(function cmind___crit_num)
 set minx=GetRectMinX(GetPlayableMapRect())
 set miny=GetRectMinY(GetPlayableMapRect())
 set mapx=- minx * 2
 set mapy=- miny * 2
-set cmind__Wx=mapx / cmind__Width
-set cmind__Wy=mapy / cmind__Width
-set cmind__OMTI=CreateTimer()
-call TimerStart(cmind__OMTI, 10, false, function overmind)
-call TimerStart(CreateTimer(), 5, true, function cmind__minus)
+set cmind___Wx=mapx / cmind___Width
+set cmind___Wy=mapy / cmind___Width
+set cmind___OMTI=CreateTimer()
+call TimerStart(cmind___OMTI, 10, false, function overmind)
+call TimerStart(CreateTimer(), 5, true, function cmind___minus)
 endfunction
 
 //library cmind ends
@@ -3817,13 +3805,13 @@ set cjlocgn_00000000=GetTriggerUnit()
 set cjlocgn_00000001=GetUnitUserData(cjlocgn_00000000)
 set cjlocgn_00000002=GetUnitAbilityLevel(cjlocgn_00000000, 0x697A6C75)
 set cjlocgn_00000003="RAY1"
-set cjlocgn_00000004=gamma__Maxdis
-set cjlocgn_00000005=gamma__Maxang
+set cjlocgn_00000004=gamma___Maxdis
+set cjlocgn_00000005=gamma___Maxang
 set cjlocgn_00000006=s__TowerBaseConfig_damage[s__UnitDataStruct_towerConfig[cjlocgn_00000001]]
 set cjlocgn_00000007=0
 if cjlocgn_00000002 > 1 then
-set cjlocgn_00000004=gamma__Maxdis + gamma__Disadd * cjlocgn_00000002
-set cjlocgn_00000005=gamma__Maxang + gamma__Angadd * cjlocgn_00000002
+set cjlocgn_00000004=gamma___Maxdis + gamma___Disadd * cjlocgn_00000002
+set cjlocgn_00000005=gamma___Maxang + gamma___Angadd * cjlocgn_00000002
 set cjlocgn_00000007=2 * cjlocgn_00000002
 if cjlocgn_00000002 == 3 or cjlocgn_00000002 == 4 then
 set cjlocgn_00000003="RAY2"
@@ -3856,7 +3844,7 @@ set s__gamma_num[cjlocgn_00000009]=cjlocgn_00000007
 loop
 exitwhen cjlocgn_0000000a == cjlocgn_00000007
 call s__pair_past(cjlocgn_0000000d,cjlocgn_0000000b)
-call s__pair_polar(cjlocgn_0000000d,cjlocgn_0000000f + gamma__Dis100Add , cjlocgn_0000000e + ( ( cjlocgn_00000010 / cjlocgn_00000007 ) * cjlocgn_0000000a ) - ( cjlocgn_00000010 / 2 ))
+call s__pair_polar(cjlocgn_0000000d,cjlocgn_0000000f + gamma___Dis100Add , cjlocgn_0000000e + ( ( cjlocgn_00000010 / cjlocgn_00000007 ) * cjlocgn_0000000a ) - ( cjlocgn_00000010 / 2 ))
 set s___gamma_l[s__gamma_l[cjlocgn_00000009]+cjlocgn_0000000a]=AddLightningEx(cjlocgn_00000003, true, s__pair_x[cjlocgn_0000000b], s__pair_y[cjlocgn_0000000b], 60, s__pair_x[cjlocgn_0000000d], s__pair_y[cjlocgn_0000000d], 0)
 if GetRandomInt(0, 2) == 2 then
 call DestroyEffect(AddSpecialEffect("Abilities\\Spells\\Other\\Incinerate\\IncinerateBuff.mdl", s__pair_x[cjlocgn_0000000d], s__pair_y[cjlocgn_0000000d]))
@@ -3865,7 +3853,7 @@ set cjlocgn_0000000a=cjlocgn_0000000a + 1
 endloop
 call DestroyEffect(AddSpecialEffectTargetUnitBJ("overhead", cjlocgn_00000000, "Abilities\\Spells\\Other\\Incinerate\\IncinerateBuff.mdl"))
 set cjlocgn_00000011=CreateGroup()
-call GroupEnumUnitsInRange(cjlocgn_00000011, s__pair_x[cjlocgn_0000000b], s__pair_y[cjlocgn_0000000b], cjlocgn_0000000f + gamma__Dis100Add, null)
+call GroupEnumUnitsInRange(cjlocgn_00000011, s__pair_x[cjlocgn_0000000b], s__pair_y[cjlocgn_0000000b], cjlocgn_0000000f + gamma___Dis100Add, null)
 set cjlocgn_00000012=FirstOfGroup(cjlocgn_00000011)
 loop
 exitwhen cjlocgn_00000012 == null
@@ -3876,8 +3864,8 @@ endif
 call GroupRemoveUnit(cjlocgn_00000011, cjlocgn_00000012)
 set cjlocgn_00000012=FirstOfGroup(cjlocgn_00000011)
 endloop
-set gamma__ga[gamma__next]=cjlocgn_00000009
-set gamma__next=gamma__next + 1
+set gamma___ga[gamma___next]=cjlocgn_00000009
+set gamma___next=gamma___next + 1
 call DestroyGroup(cjlocgn_00000011)
 call s__pair_deallocate(cjlocgn_0000000b)
 call s__pair_deallocate(cjlocgn_0000000d)
@@ -3891,18 +3879,18 @@ function s__gamma_go takes nothing returns nothing
 local integer i=0
 local integer j=0
 loop
-exitwhen i == gamma__next
-set s__gamma_time[gamma__ga[i]]=s__gamma_time[gamma__ga[i]] - 1
-if s__gamma_time[gamma__ga[i]] <= 0 then
+exitwhen i == gamma___next
+set s__gamma_time[gamma___ga[i]]=s__gamma_time[gamma___ga[i]] - 1
+if s__gamma_time[gamma___ga[i]] <= 0 then
 set j=0
 loop
-exitwhen j == s__gamma_num[gamma__ga[i]]
-call DestroyLightning(s___gamma_l[s__gamma_l[gamma__ga[i]]+j])
+exitwhen j == s__gamma_num[gamma___ga[i]]
+call DestroyLightning(s___gamma_l[s__gamma_l[gamma___ga[i]]+j])
 set j=j + 1
 endloop
-call s__gamma_deallocate(gamma__ga[i])
-set gamma__next=gamma__next - 1
-set gamma__ga[i]=gamma__ga[gamma__next]
+call s__gamma_deallocate(gamma___ga[i])
+set gamma___next=gamma___next - 1
+set gamma___ga[i]=gamma___ga[gamma___next]
 else
 set i=i + 1
 endif
@@ -4811,13 +4799,13 @@ endfunction
 function s__cftstruct_onRest takes nothing returns nothing
 local integer i=0
 loop
-exitwhen i == createunittime__nextcft
-call s__cftstruct_deallocate(createunittime__cfta[i])
+exitwhen i == createunittime___nextcft
+call s__cftstruct_deallocate(createunittime___cfta[i])
 set i=i + 1
 endloop
-set createunittime__nextcft=0
+set createunittime___nextcft=0
 endfunction
-function createunittime__ord takes unit u returns nothing
+function createunittime___ord takes unit u returns nothing
 if u == null then
 call print("null creep/bug/save replay pls")
 endif
@@ -4835,29 +4823,29 @@ set s__cftstruct_p[c]=p
 set s__cftstruct_id[c]=id
 set s__cftstruct_x[c]=x
 set s__cftstruct_y[c]=y
-set createunittime__cfta[createunittime__nextcft]=c
-set s__cftstruct_i[c]=createunittime__nextcft
-set createunittime__nextcft=createunittime__nextcft + 1
+set createunittime___cfta[createunittime___nextcft]=c
+set s__cftstruct_i[c]=createunittime___nextcft
+set createunittime___nextcft=createunittime___nextcft + 1
 endfunction
-function createunittime__go takes nothing returns nothing
+function createunittime___go takes nothing returns nothing
 local integer i
 local unit cjlocgn_00000000
-set i=GetRandomInt(0, createunittime__nextcft - 1)
-if createunittime__nextcft != 0 and creepsnum < 45 + 10 then
-set createunittime__nextcft=createunittime__nextcft - 1
-set cjlocgn_00000000=CreateUnit(s__cftstruct_p[createunittime__cfta[i]], s__cftstruct_id[createunittime__cfta[i]], s__cftstruct_x[createunittime__cfta[i]], s__cftstruct_y[createunittime__cfta[i]], 0)
-call createunittime__ord(cjlocgn_00000000)
-call s__cftstruct_deallocate(createunittime__cfta[i])
-set createunittime__cfta[i]=createunittime__cfta[createunittime__nextcft]
-if createunittime__nextcft > spawnperiod / 0.25 then
-call createunittime__go()
+set i=GetRandomInt(0, createunittime___nextcft - 1)
+if createunittime___nextcft != 0 and creepsnum < 45 + 10 then
+set createunittime___nextcft=createunittime___nextcft - 1
+set cjlocgn_00000000=CreateUnit(s__cftstruct_p[createunittime___cfta[i]], s__cftstruct_id[createunittime___cfta[i]], s__cftstruct_x[createunittime___cfta[i]], s__cftstruct_y[createunittime___cfta[i]], 0)
+call createunittime___ord(cjlocgn_00000000)
+call s__cftstruct_deallocate(createunittime___cfta[i])
+set createunittime___cfta[i]=createunittime___cfta[createunittime___nextcft]
+if createunittime___nextcft > spawnperiod / 0.25 then
+call createunittime___go()
 endif
 set cjlocgn_00000000=null
 endif
 endfunction
-function createunittime__onInit takes nothing returns nothing
+function createunittime___onInit takes nothing returns nothing
 local timer t=CreateTimer()
-call TimerStart(t, .25, true, function createunittime__go)
+call TimerStart(t, .25, true, function createunittime___go)
 endfunction
 
 //library createunittime ends
@@ -5477,30 +5465,30 @@ set s__point_p[pt]=s__pair_u2p(u)
 set s__point_subType[pt]=R2I(getmana(u))
 set s__point_loc[pt]=R2I(GetUnitFacing(u))
 if GetUnitTypeId(u) == CREEP_TARGET then
-set s__point_Type[pt]=creeps__PT_TARGET
+set s__point_Type[pt]=creeps___PT_TARGET
 set targarray[nexttarg]=pt
 set nexttarg=nexttarg + 1
 elseif GetUnitTypeId(u) == CREEP_RESP then
-set s__point_Type[pt]=creeps__PT_RESPAWN
+set s__point_Type[pt]=creeps___PT_RESPAWN
 set resparray[nextresp]=pt
 set nextresp=nextresp + 1
 endif
 endfunction
 function s__point_scan takes nothing returns nothing
 local unit u
-set creeps__scangroup=CreateGroup()
-call GroupEnumUnitsInRect(creeps__scangroup, GetPlayableMapRect(), null)
-set u=FirstOfGroup(creeps__scangroup)
+set creeps___scangroup=CreateGroup()
+call GroupEnumUnitsInRect(creeps___scangroup, GetPlayableMapRect(), null)
+set u=FirstOfGroup(creeps___scangroup)
 loop
 exitwhen u == null
 if GetUnitTypeId(u) != CREEP_RESP and GetUnitTypeId(u) != CREEP_TARGET then
-call GroupRemoveUnit(creeps__scangroup, u)
+call GroupRemoveUnit(creeps___scangroup, u)
 else
 call s__point_make(u)
-call GroupRemoveUnit(creeps__scangroup, u)
+call GroupRemoveUnit(creeps___scangroup, u)
 call RemoveUnit(u)
 endif
-set u=FirstOfGroup(creeps__scangroup)
+set u=FirstOfGroup(creeps___scangroup)
 endloop
 set u=null
 endfunction
@@ -5514,128 +5502,128 @@ set s__creepinfo_lvl[c]=lvl
 set s__creepinfo_Type[c]=Type
 set s__creepinfo_num[c]=num
 if Type == 0 then
-set creeps__allc[lvl]=c
+set creeps___allc[lvl]=c
 elseif Type == 1 then
-set creeps__basec[lvl]=c
+set creeps___basec[lvl]=c
 elseif Type == 2 then
-set creeps__subc[lvl]=c
+set creeps___subc[lvl]=c
 endif
 endfunction
 function s__creepinfo_infinit takes nothing returns nothing
 local integer lvl=1
 local integer n=0
-call s__creepinfo_setin(0x6C763131 , lvl , creeps__ALL , 1)
-call s__creepinfo_setin(0x6C763131 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763131 , lvl , creeps__SUBSID , 1)
+call s__creepinfo_setin(0x6C763131 , lvl , creeps___ALL , 1)
+call s__creepinfo_setin(0x6C763131 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763131 , lvl , creeps___SUBSID , 1)
 set WAVE_SUBNUM[lvl]=20
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763131 , lvl , creeps__ALL , 6)
-call s__creepinfo_setin(0x6C763131 , lvl , creeps__BASE , 6)
-call s__creepinfo_setin(0x6C763131 , lvl , creeps__SUBSID , 6)
+call s__creepinfo_setin(0x6C763131 , lvl , creeps___ALL , 6)
+call s__creepinfo_setin(0x6C763131 , lvl , creeps___BASE , 6)
+call s__creepinfo_setin(0x6C763131 , lvl , creeps___SUBSID , 6)
 set WAVE_SUBNUM[lvl]=20
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763131 , lvl , creeps__ALL , 3)
-call s__creepinfo_setin(0x6C763132 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763133 , lvl , creeps__SUBSID , 1)
+call s__creepinfo_setin(0x6C763131 , lvl , creeps___ALL , 3)
+call s__creepinfo_setin(0x6C763132 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763133 , lvl , creeps___SUBSID , 1)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763131 , lvl , creeps__ALL , 3)
-call s__creepinfo_setin(0x6C763132 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763133 , lvl , creeps__SUBSID , 2)
+call s__creepinfo_setin(0x6C763131 , lvl , creeps___ALL , 3)
+call s__creepinfo_setin(0x6C763132 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763133 , lvl , creeps___SUBSID , 2)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763131 , lvl , creeps__ALL , 3)
-call s__creepinfo_setin(0x6C763134 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763132 , lvl , creeps__SUBSID , 2)
+call s__creepinfo_setin(0x6C763131 , lvl , creeps___ALL , 3)
+call s__creepinfo_setin(0x6C763134 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763132 , lvl , creeps___SUBSID , 2)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763133 , lvl , creeps__ALL , 1)
-call s__creepinfo_setin(0x6C763134 , lvl , creeps__BASE , 2)
-call s__creepinfo_setin(0x6C763132 , lvl , creeps__SUBSID , 3)
+call s__creepinfo_setin(0x6C763133 , lvl , creeps___ALL , 1)
+call s__creepinfo_setin(0x6C763134 , lvl , creeps___BASE , 2)
+call s__creepinfo_setin(0x6C763132 , lvl , creeps___SUBSID , 3)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763131 , lvl , creeps__ALL , 5)
-call s__creepinfo_setin(0x6C763135 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763134 , lvl , creeps__SUBSID , 2)
+call s__creepinfo_setin(0x6C763131 , lvl , creeps___ALL , 5)
+call s__creepinfo_setin(0x6C763135 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763134 , lvl , creeps___SUBSID , 2)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763134 , lvl , creeps__ALL , 1)
-call s__creepinfo_setin(0x6C763135 , lvl , creeps__BASE , 2)
-call s__creepinfo_setin(0x6C763134 , lvl , creeps__SUBSID , 1)
+call s__creepinfo_setin(0x6C763134 , lvl , creeps___ALL , 1)
+call s__creepinfo_setin(0x6C763135 , lvl , creeps___BASE , 2)
+call s__creepinfo_setin(0x6C763134 , lvl , creeps___SUBSID , 1)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763232 , lvl , creeps__ALL , 2)
-call s__creepinfo_setin(0x6C763231 , lvl , creeps__BASE , 2)
-call s__creepinfo_setin(0x6C763232 , lvl , creeps__SUBSID , 1)
+call s__creepinfo_setin(0x6C763232 , lvl , creeps___ALL , 2)
+call s__creepinfo_setin(0x6C763231 , lvl , creeps___BASE , 2)
+call s__creepinfo_setin(0x6C763232 , lvl , creeps___SUBSID , 1)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763232 , lvl , creeps__ALL , 3)
-call s__creepinfo_setin(0x6C763233 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763231 , lvl , creeps__SUBSID , 2)
+call s__creepinfo_setin(0x6C763232 , lvl , creeps___ALL , 3)
+call s__creepinfo_setin(0x6C763233 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763231 , lvl , creeps___SUBSID , 2)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763232 , lvl , creeps__ALL , 4)
-call s__creepinfo_setin(0x6C763234 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763233 , lvl , creeps__SUBSID , 1)
+call s__creepinfo_setin(0x6C763232 , lvl , creeps___ALL , 4)
+call s__creepinfo_setin(0x6C763234 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763233 , lvl , creeps___SUBSID , 1)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763231 , lvl , creeps__ALL , 2)
-call s__creepinfo_setin(0x6C763235 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763234 , lvl , creeps__SUBSID , 1)
+call s__creepinfo_setin(0x6C763231 , lvl , creeps___ALL , 2)
+call s__creepinfo_setin(0x6C763235 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763234 , lvl , creeps___SUBSID , 1)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763233 , lvl , creeps__ALL , 1)
-call s__creepinfo_setin(0x6C763235 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763234 , lvl , creeps__SUBSID , 2)
+call s__creepinfo_setin(0x6C763233 , lvl , creeps___ALL , 1)
+call s__creepinfo_setin(0x6C763235 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763234 , lvl , creeps___SUBSID , 2)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763235 , lvl , creeps__ALL , 1)
-call s__creepinfo_setin(0x6C763235 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763232 , lvl , creeps__SUBSID , 7)
+call s__creepinfo_setin(0x6C763235 , lvl , creeps___ALL , 1)
+call s__creepinfo_setin(0x6C763235 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763232 , lvl , creeps___SUBSID , 7)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763331 , lvl , creeps__ALL , 2)
-call s__creepinfo_setin(0x6C763332 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763331 , lvl , creeps__SUBSID , 2)
+call s__creepinfo_setin(0x6C763331 , lvl , creeps___ALL , 2)
+call s__creepinfo_setin(0x6C763332 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763331 , lvl , creeps___SUBSID , 2)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763331 , lvl , creeps__ALL , 2)
-call s__creepinfo_setin(0x6C763333 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763332 , lvl , creeps__SUBSID , 2)
+call s__creepinfo_setin(0x6C763331 , lvl , creeps___ALL , 2)
+call s__creepinfo_setin(0x6C763333 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763332 , lvl , creeps___SUBSID , 2)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763332 , lvl , creeps__ALL , 1)
-call s__creepinfo_setin(0x6C763334 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763333 , lvl , creeps__SUBSID , 1)
+call s__creepinfo_setin(0x6C763332 , lvl , creeps___ALL , 1)
+call s__creepinfo_setin(0x6C763334 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763333 , lvl , creeps___SUBSID , 1)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x6C763332 , lvl , creeps__ALL , 2)
-call s__creepinfo_setin(0x6C763334 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x6C763331 , lvl , creeps__SUBSID , 2)
+call s__creepinfo_setin(0x6C763332 , lvl , creeps___ALL , 2)
+call s__creepinfo_setin(0x6C763334 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x6C763331 , lvl , creeps___SUBSID , 2)
 set lvl=lvl + 1
 set MAXLVL[0]=lvl
-call s__creepinfo_setin(0x314C3132 , lvl , creeps__ALL , 3)
-call s__creepinfo_setin(0x314C3131 , lvl , creeps__BASE , 4)
-call s__creepinfo_setin(0x314C3133 , lvl , creeps__SUBSID , 3)
+call s__creepinfo_setin(0x314C3132 , lvl , creeps___ALL , 3)
+call s__creepinfo_setin(0x314C3131 , lvl , creeps___BASE , 4)
+call s__creepinfo_setin(0x314C3133 , lvl , creeps___SUBSID , 3)
 set WAVE_END[lvl]=true
 set lvl=lvl + 1
-call s__creepinfo_setin(0x314C3132 , lvl , creeps__ALL , 4)
-call s__creepinfo_setin(0x314C3131 , lvl , creeps__BASE , 6)
-call s__creepinfo_setin(0x314C3133 , lvl , creeps__SUBSID , 2)
+call s__creepinfo_setin(0x314C3132 , lvl , creeps___ALL , 4)
+call s__creepinfo_setin(0x314C3131 , lvl , creeps___BASE , 6)
+call s__creepinfo_setin(0x314C3133 , lvl , creeps___SUBSID , 2)
 set WAVE_END[lvl]=true
 set lvl=lvl + 1
-call s__creepinfo_setin(0x314C3131 , lvl , creeps__ALL , 2)
-call s__creepinfo_setin(0x314C3133 , lvl , creeps__BASE , 7)
-call s__creepinfo_setin(0x314C3134 , lvl , creeps__SUBSID , 3)
+call s__creepinfo_setin(0x314C3131 , lvl , creeps___ALL , 2)
+call s__creepinfo_setin(0x314C3133 , lvl , creeps___BASE , 7)
+call s__creepinfo_setin(0x314C3134 , lvl , creeps___SUBSID , 3)
 set WAVE_END[lvl]=true
 set WAVE_SUBNUM[lvl]=3
 set lvl=lvl + 1
-call s__creepinfo_setin(0x314C3132 , lvl , creeps__ALL , 2)
-call s__creepinfo_setin(0x314C3135 , lvl , creeps__BASE , 1)
-call s__creepinfo_setin(0x314C3134 , lvl , creeps__SUBSID , 6)
+call s__creepinfo_setin(0x314C3132 , lvl , creeps___ALL , 2)
+call s__creepinfo_setin(0x314C3135 , lvl , creeps___BASE , 1)
+call s__creepinfo_setin(0x314C3134 , lvl , creeps___SUBSID , 6)
 set WAVE_SUBNUM[lvl]=2
 set lvl=lvl + 1
-call s__creepinfo_setin(0x314C3134 , lvl , creeps__ALL , 2)
-call s__creepinfo_setin(0x314C3135 , lvl , creeps__BASE , 2)
-call s__creepinfo_setin(0x314C3134 , lvl , creeps__SUBSID , 1)
+call s__creepinfo_setin(0x314C3134 , lvl , creeps___ALL , 2)
+call s__creepinfo_setin(0x314C3135 , lvl , creeps___BASE , 2)
+call s__creepinfo_setin(0x314C3134 , lvl , creeps___SUBSID , 1)
 set WAVE_SUBNUM[lvl]=2
 set lvl=lvl + 1
-call s__creepinfo_setin(0x314C3134 , lvl , creeps__ALL , 2)
-call s__creepinfo_setin(0x314C3135 , lvl , creeps__BASE , 2)
-call s__creepinfo_setin(0x314C3136 , lvl , creeps__SUBSID , 1)
+call s__creepinfo_setin(0x314C3134 , lvl , creeps___ALL , 2)
+call s__creepinfo_setin(0x314C3135 , lvl , creeps___BASE , 2)
+call s__creepinfo_setin(0x314C3136 , lvl , creeps___SUBSID , 1)
 set lvl=lvl + 1
-call s__creepinfo_setin(0x314C3131 , lvl , creeps__ALL , 3)
-call s__creepinfo_setin(0x314C3137 , lvl , creeps__BASE , 2)
-call s__creepinfo_setin(0x314C3132 , lvl , creeps__SUBSID , 0)
+call s__creepinfo_setin(0x314C3131 , lvl , creeps___ALL , 3)
+call s__creepinfo_setin(0x314C3137 , lvl , creeps___BASE , 2)
+call s__creepinfo_setin(0x314C3132 , lvl , creeps___SUBSID , 0)
 set lvl=lvl + 1
-call s__creepinfo_setin(0 , lvl , creeps__ALL , 0)
-call s__creepinfo_setin(0x314C3137 , lvl , creeps__BASE , 2)
-call s__creepinfo_setin(0x314C3138 , lvl , creeps__SUBSID , 1)
+call s__creepinfo_setin(0 , lvl , creeps___ALL , 0)
+call s__creepinfo_setin(0x314C3137 , lvl , creeps___BASE , 2)
+call s__creepinfo_setin(0x314C3138 , lvl , creeps___SUBSID , 1)
 set WAVE_SUBNUM[lvl]=2
 set WAVE_END[lvl]=true
 set lvl=lvl + 1
@@ -5691,22 +5679,22 @@ set p=resparray[i]
 if s__point_loc[p] == LOC then
 set n=0
 loop
-exitwhen n == s__creepinfo_num[creeps__allc[lvlnum]]
-call CreateUnitTime(creepsplayer , s__creepinfo_id[creeps__allc[lvlnum]] , s__pair_x[s__point_p[p]] , s__pair_y[s__point_p[p]])
+exitwhen n == s__creepinfo_num[creeps___allc[lvlnum]]
+call CreateUnitTime(creepsplayer , s__creepinfo_id[creeps___allc[lvlnum]] , s__pair_x[s__point_p[p]] , s__pair_y[s__point_p[p]])
 set n=n + 1
 endloop
-if s__point_subType[p] == creeps__BASE then
+if s__point_subType[p] == creeps___BASE then
 set n=0
 loop
-exitwhen n == s__creepinfo_num[creeps__basec[lvlnum]]
-call CreateUnitTime(creepsplayer , s__creepinfo_id[creeps__basec[lvlnum]] , s__pair_x[s__point_p[p]] , s__pair_y[s__point_p[p]])
+exitwhen n == s__creepinfo_num[creeps___basec[lvlnum]]
+call CreateUnitTime(creepsplayer , s__creepinfo_id[creeps___basec[lvlnum]] , s__pair_x[s__point_p[p]] , s__pair_y[s__point_p[p]])
 set n=n + 1
 endloop
-elseif s__point_subType[p] == creeps__SUBSID then
+elseif s__point_subType[p] == creeps___SUBSID then
 set n=0
 loop
-exitwhen n == s__creepinfo_num[creeps__subc[lvlnum]]
-call CreateUnitTime(creepsplayer , s__creepinfo_id[creeps__subc[lvlnum]] , s__pair_x[s__point_p[p]] , s__pair_y[s__point_p[p]])
+exitwhen n == s__creepinfo_num[creeps___subc[lvlnum]]
+call CreateUnitTime(creepsplayer , s__creepinfo_id[creeps___subc[lvlnum]] , s__pair_x[s__point_p[p]] , s__pair_y[s__point_p[p]])
 set n=n + 1
 endloop
 endif
@@ -5715,7 +5703,7 @@ set i=i + 1
 endloop
 set u=null
 endfunction
-function creeps__ifdie takes nothing returns nothing
+function creeps___ifdie takes nothing returns nothing
 local unit u=GetTriggerUnit()
 call s__UnitDataStruct_rem(u)
 call GroupRemoveUnit(creepsgro, u)
@@ -5723,7 +5711,7 @@ set creepsnum=creepsnum - 1
 call removeunit(u , 4)
 set u=null
 endfunction
-function creeps__forgroonsto takes nothing returns nothing
+function creeps___forgroonsto takes nothing returns nothing
 local unit u=GetEnumUnit()
 call compareXY(u)
 if GetUnitCurrentOrder(u) == 0 then
@@ -5731,7 +5719,7 @@ call cmindtarget(u)
 endif
 set u=null
 endfunction
-function creeps__onStop takes nothing returns nothing
+function creeps___onStop takes nothing returns nothing
 local unit u
 local integer i=7
 loop
@@ -5743,21 +5731,21 @@ endif
 set i=i - 1
 endloop
 set u=null
-call ForGroup(creepsgro, function creeps__forgroonsto)
+call ForGroup(creepsgro, function creeps___forgroonsto)
 endfunction
-function creeps__init takes nothing returns nothing
+function creeps___init takes nothing returns nothing
 local timer t
 local trigger tt
 local integer i=0
 set spawner=CreateTimer()
 set t=CreateTimer()
 set tt=CreateTrigger()
-call TimerStart(t, 1, true, function creeps__onStop)
+call TimerStart(t, 1, true, function creeps___onStop)
 set creepsgro=CreateGroup()
 call s__creepinfo_infinit()
 call s__point_ptinit()
 call TriggerRegisterPlayerUnitEventSimple(tt, Player(10), EVENT_PLAYER_UNIT_DEATH)
-call TriggerAddAction(tt, function creeps__ifdie)
+call TriggerAddAction(tt, function creeps___ifdie)
 call TriggerSleepAction(0.2)
 set l=CreateLeaderboard()
 call LeaderboardSetLabel(l, GetLocalizedString("TRIGSTR_24"))
@@ -6189,6 +6177,7 @@ call SetPlayerStateBJ(s__gamepr_p[actgpa[i]], PLAYER_STATE_RESOURCE_FOOD_CAP, 40
 set i=i + 1
 endloop
 call initdiff()
+call print("gameStart Called")
 set falseStartCountDown=falseStartCountDownInitialSec / spawnperiod
 call TimerStart(spawner, spawnperiod, true, function GO)
 endfunction
@@ -6207,7 +6196,6 @@ endif
 call s__gamepr_compareLost()
 endfunction
 function s__gamepr_onInit takes nothing returns nothing
-call s__gamepr_gameStart()
 endfunction
 function gameplayer___init takes nothing returns nothing
 local trigger tr=CreateTrigger()
@@ -6215,6 +6203,7 @@ call TriggerRegisterAnyUnitEventBJ(tr, EVENT_PLAYER_UNIT_CONSTRUCT_FINISH)
 call TriggerRegisterAnyUnitEventBJ(tr, EVENT_PLAYER_UNIT_DEATH)
 call TriggerAddAction(tr, function s__gamepr_gpunits)
 set playerpoint=s__pair__allocate()
+call s__gamepr_gameStart()
 endfunction
 
 //library gameplayer ends
@@ -6359,13 +6348,6 @@ set gg_rct_p2=Rect(- 2144.0, - 2592.0, - 896.0, - 1952.0)
 set gg_rct_p3=Rect(- 3200.0, - 544.0, - 1952.0, 96.0)
 set gg_rct_p4=Rect(- 928.0, 2304.0, 320.0, 2944.0)
 set gg_rct_base=Rect(- 384.0, - 384.0, 384.0, 416.0)
-endfunction
-function Trig_____________________________________004_Actions takes nothing returns nothing
-call AddSpecialEffectLocBJ(GetRectCenter(GetPlayableMapRect()), "Abilities\\Spells\\Human\\Feedback\\SpellBreakerAttack.mdl")
-endfunction
-function InitTrig_____________________________________004 takes nothing returns nothing
-set gg_trg_____________________________________004=CreateTrigger()
-call TriggerAddAction(gg_trg_____________________________________004, function Trig_____________________________________004_Actions)
 endfunction
 function Trig_sel_Action1s takes nothing returns nothing
 set lcpu[GetPlayerId(GetTriggerPlayer())]=not ( lcpu[GetPlayerId(GetTriggerPlayer())] )
@@ -6647,18 +6629,11 @@ call TriggerAddCondition(gg_trg_selfkill, Condition(function Trig_selfkill_Condi
 call TriggerAddAction(gg_trg_selfkill, function Trig_selfkill_Actions)
 endfunction
 function InitCustomTriggers takes nothing returns nothing
-//Function not found: call InitTrig_macrotest()
-//Function not found: call InitTrig_constants()
 //Function not found: call InitTrig_towadd()
-//Function not found: call InitTrig_player()
-//Function not found: call InitTrig_game()
 //Function not found: call InitTrig_towers()
-//Function not found: call InitTrig_CRISTALS()
 //Function not found: call InitTrig_unittimeremove()
 //Function not found: call InitTrig_destruct()
 //Function not found: call InitTrig_indicator_____________________u()
-//Function not found: call InitTrig_molnia()
-//Function not found: call InitTrig_wall()
 //Function not found: call InitTrig_Slow()
 //Function not found: call InitTrig_Effect()
 //Function not found: call InitTrig_missile()
@@ -6666,10 +6641,6 @@ function InitCustomTriggers takes nothing returns nothing
 //Function not found: call InitTrig_prima()
 //Function not found: call InitTrig_gamma()
 //Function not found: call InitTrig_epicentr()
-//Function not found: call InitTrig_CREEPS()
-//Function not found: call InitTrig_MIND()
-call InitTrig_____________________________________004()
-//Function not found: call InitTrig_createfortime()
 call InitTrig_lowcpu()
 call InitTrig_restart()
 call InitTrig_restart_____________________u()
@@ -6869,24 +6840,24 @@ call CreateRegions()
 call CreateAllUnits()
 call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs32704595")
+call ExecuteFunc("jasshelper__initstructs37533310")
 call ExecuteFunc("cjLibw560nbs9b8nse46703948___init")
 call ExecuteFunc("towadd___init")
 call ExecuteFunc("towers___init")
 call ExecuteFunc("unittimerremove___init")
 call ExecuteFunc("asciiTable___init")
-call ExecuteFunc("cmind__init")
+call ExecuteFunc("cmind___init")
 call ExecuteFunc("indicator___init")
 call ExecuteFunc("manatower___init")
 call ExecuteFunc("svod___init")
-call ExecuteFunc("createunittime__onInit")
+call ExecuteFunc("createunittime___onInit")
 call ExecuteFunc("cristals___init")
 call ExecuteFunc("partsConfig_setup")
-call ExecuteFunc("creeps__init")
+call ExecuteFunc("creeps___init")
 call ExecuteFunc("game___init")
 call ExecuteFunc("gameplayer___init")
 
-call ExecuteFunc("jasshelper__0initdatastructs32704595")
+call ExecuteFunc("jasshelper__0initdatastructs37533310")
 call InitGlobals()
 call InitCustomTriggers()
 call RunInitializationTriggers()
@@ -6970,6 +6941,7 @@ call SetPlayerStateBJ(s__gamepr_p[actgpa[i]], PLAYER_STATE_RESOURCE_FOOD_CAP, 40
 set i=i + 1
 endloop
 call initdiff()
+call print("gameStart Called")
 set falseStartCountDown=falseStartCountDownInitialSec / spawnperiod
 call TimerStart(spawner, spawnperiod, true, function GO)
    return true
@@ -7224,7 +7196,7 @@ set veccount=veccount - 1
    return true
 endfunction
 
-function jasshelper__initstructs32704595 takes nothing returns nothing
+function jasshelper__initstructs37533310 takes nothing returns nothing
     set st__gamepr_compareLost=CreateTrigger()
     call TriggerAddCondition(st__gamepr_compareLost,Condition( function sa__gamepr_compareLost))
     set st__gamepr_gameStart=CreateTrigger()
@@ -7353,7 +7325,7 @@ function jasshelper__initstructs32704595 takes nothing returns nothing
     call ExecuteFunc("s__gamepr_onInit")
 endfunction
 
-function jasshelper__0initdatastructs32704595 takes nothing returns nothing
+function jasshelper__0initdatastructs37533310 takes nothing returns nothing
  local integer s
 
 //Loaded from: D:\_wc3\dev\slk/TowerBaseConfig.slk
