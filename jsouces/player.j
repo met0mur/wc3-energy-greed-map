@@ -89,7 +89,7 @@ static method compareLost takes nothing returns nothing
         endloop
         //print1("L"+B2S(l))
         if l
-            dispOnRes=GetLocalizedString("TRIGSTR_8")
+            displayedTextOnRestart=GetLocalizedString("TRIGSTR_8")
             restartgame()
         endif
 endmethod
@@ -201,7 +201,7 @@ static method gameStart takes nothing returns nothing //инициализаци
 endmethod
 
 static method win takes nothing returns nothing
-    dispOnRes="WIN!"
+    displayedTextOnRestart="WIN!"
     restartgame()
     //govote()
 endmethod

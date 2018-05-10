@@ -106,22 +106,7 @@ return 0
 endmethod
 
 static method onDeath takes nothing returns nothing
-item i
-if NoGem==false
-    integer id=GetDestructableTypeId(GetTriggerDestructable())
-    if id=='B000'
-        i = CreateItem(getrandomgem(),GetDestructableX(GetTriggerDestructable()),GetDestructableY(GetTriggerDestructable()))
-    elseif id=='B002'
-        i = CreateItem(pirrotin,GetDestructableX(GetTriggerDestructable()),GetDestructableY(GetTriggerDestructable()))
-    elseif id=='B003'
-        i = CreateItem(opal,GetDestructableX(GetTriggerDestructable()),GetDestructableY(GetTriggerDestructable()))
-    elseif id=='B004'
-        i = CreateItem(dioptaz,GetDestructableX(GetTriggerDestructable()),GetDestructableY(GetTriggerDestructable()))
-    elseif id=='B005'
-        i = CreateItem(obsidian,GetDestructableX(GetTriggerDestructable()),GetDestructableY(GetTriggerDestructable()))
-    endif
-endif
-i=null
+//nope
 endmethod
 
 static method onInitEnum takes nothing returns nothing

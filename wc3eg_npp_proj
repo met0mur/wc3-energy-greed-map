@@ -1,0 +1,46 @@
+<NotepadPlus>
+    <Project name="souces">
+        <Folder name="creeps">
+            <File name="jsouces\creeps\creeps.j" />
+            <File name="jsouces\creeps\mind.j" />
+            <File name="jsouces\creeps\spawner.j" />
+        </Folder>
+        <Folder name="misc">
+            <File name="jsouces\misc\playerSpawner.j" />
+        </Folder>
+        <Folder name="towerConfs">
+            <File name="jsouces\towerConfs\towerBaseConfig.j" />
+        </Folder>
+        <Folder name="towerParts">
+            <File name="jsouces\towerParts\partsConfig.j" />
+            <File name="jsouces\towerParts\partsStruct.j" />
+        </Folder>
+        <Folder name="towerVisual">
+            <File name="jsouces\towerVisual\effect.j" />
+            <File name="jsouces\towerVisual\epic.j" />
+            <File name="jsouces\towerVisual\gamma.j" />
+            <File name="jsouces\towerVisual\missile.j" />
+            <File name="jsouces\towerVisual\prima.j" />
+            <File name="jsouces\towerVisual\slow.j" />
+            <File name="jsouces\towerVisual\wall.j" />
+        </Folder>
+        <File name="jsouces\ascii.j" />
+        <File name="jsouces\constants.j" />
+        <File name="jsouces\cristals.j" />
+        <File name="jsouces\energyLinkView.j" />
+        <File name="jsouces\game.j" />
+        <File name="jsouces\general.j" />
+        <File name="jsouces\includeList.j" />
+        <File name="jsouces\indicator.j" />
+        <File name="jsouces\manatower.j" />
+        <File name="jsouces\mazeBuild.j" />
+        <File name="jsouces\player.j" />
+        <File name="jsouces\radiusIndicator.j" />
+        <File name="jsouces\svod.j" />
+        <File name="jsouces\towAdd.j" />
+        <File name="jsouces\towers.j" />
+        <File name="jsouces\unitData.j" />
+        <File name="jsouces\unitRemove.j" />
+        <File name="jsouces\upgradeProgress.j" />
+    </Project>
+</NotepadPlus>

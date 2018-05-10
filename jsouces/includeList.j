@@ -5,7 +5,7 @@ include "jsouces/unitData.j";
 include "jsouces/radiusIndicator.j";
 include "jsouces/towerParts/partsStruct.j";
 include "jsouces/towerParts/partsConfig.j";
-include "jsouces/ascii.j";
+include "jsouces/towerConfs/ascii.j";
 include "jsouces/towerConfs/towerBaseConfig.j";
 
 include "jsouces/player.j";

@@ -262,7 +262,7 @@ function GO takes nothing returns nothing
         lvlnum=0
             //PauseTimer(spawner)
                 //gamepr.win()
-        dispOnRes="WIN!"
+        displayedTextOnRestart="WIN!"
         ExecuteFunc("restartgame")
         LeaderboardSetLabel(l,"WIN!")
             return
