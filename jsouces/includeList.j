@@ -18,5 +18,17 @@ include "jsouces/creeps/creeps.j";
 
 include "jsouces/energyLinkView.j";
 include "jsouces/towerVisual/wall.j";
+include "jsouces/towerVisual/slow.j";
+include "jsouces/towerVisual/effect.j";
+include "jsouces/towerVisual/missile.j";
+include "jsouces/towerVisual/prima.j";
+include "jsouces/towerVisual/gamma.j";
+include "jsouces/towerVisual/epic.j";
 
 include "jsouces/constants.j";
+include "jsouces/towAdd.j";
+include "jsouces/towers.j";
+include "jsouces/unitRemove.j";
+include "jsouces/mazeBuild.j";
+include "jsouces/indicator.j";
+include "jsouces/svod.j";
