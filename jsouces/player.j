@@ -48,9 +48,7 @@ gamepr gp=gpa[GetPlayerId(GetTriggerPlayer())]
         GroupRemoveUnit(g,u)
         u=FirstOfGroup(g)
     endloop
-    /*initdiff()
-    TimerStart(spawner,spawnperiod,true,function GO)
-    u=null*/
+    
     gamepr.compareLost()
 endmethod
 
@@ -196,8 +194,8 @@ static method gameStart takes nothing returns nothing //инициализаци
     initdiff()
     print("gameStart Called")
     
-    falseStartCountDown = falseStartCountDownInitialSec / spawnperiod;
-    TimerStart(spawner,spawnperiod,true,function GO)
+    falseStartCountDown = falseStartCountDownInitialSec / GameConfig.current.spawnSubwavesTimeSec;
+    TimerStart(spawner,GameConfig.current.spawnSubwavesTimeSec,true,function GO)
 endmethod
 
 static method win takes nothing returns nothing

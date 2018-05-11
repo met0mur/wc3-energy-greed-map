@@ -1,34 +1,16 @@
-library game initializer init uses creeps, upgradeProgress
+library game initializer init uses gameConfig, creeps, upgradeProgress
 
 	integer Diff=0
-	integer lvlplus=0
 	integer LOC=0
 	boolean restarting=false
 	string displayedTextOnRestart=""
 
 	nothing initdiff() {
+		GameConfig.initOnGameStart(Diff, LOC, activeplayer);
 		
-		spawnnummax=SPWN_MAX-(activeplayer/2)
-		spawnperiod=SPWN_PD-(activeplayer/2)
-		engmult=EGRE_ML+activeplayer
-		if Diff==0 
-			lvlplus=0
-		elseif Diff==1
-			spawnnummax=spawnnummax+1
-			spawnperiod=spawnperiod+1
-			engmult=engmult-1
-			lvlplus=0
-		elseif Diff==2
-			lvlplus=2
-		endif
-		
-		if (LOC==1) {
-		   spawnperiod=spawnperiod+2 
-		}
-		
-		lvlnum=1+lvlplus
+		lvlnum=1+GameConfig.current.startLevelShift
 		spawnnum=0
-		if LOC==1 {lvlnum=MAXLVL[0]+lvlplus}
+		if LOC==1 {lvlnum=MAXLVL[0]+ GameConfig.current.startLevelShift }
 	}
 
 

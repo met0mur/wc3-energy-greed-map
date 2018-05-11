@@ -13,8 +13,6 @@ boolean pause=false
 integer creepsnum=0
 group creepsgro
 
-integer spawnnummax=SPWN_MAX
-integer spawnperiod=SPWN_PD
 player creepsplayer=Player(10)
 //ТОЧКИ
 private group scangroup
@@ -273,9 +271,9 @@ function GO takes nothing returns nothing
     endif
     integer subwave_sub=0
     if WAVE_SUBNUM[lvlnum]!=0 then
-        subwave_sub=spawnnummax-WAVE_SUBNUM[lvlnum]
+        subwave_sub= GameConfig.current.spawnSubwavesNumber -WAVE_SUBNUM[lvlnum]
     endif
-    if spawnnum==spawnnummax-subwave_sub then
+    if spawnnum==GameConfig.current.spawnSubwavesNumber-subwave_sub then
         if not(WAVE_END[lvlnum]) or (WAVE_END[lvlnum] and creepsnum==0)
             lvlnum=lvlnum+1
             spawnnum=1
@@ -286,9 +284,9 @@ function GO takes nothing returns nothing
         spawnnum=spawnnum+1
     endif
     if LOC==0
-        LeaderboardSetLabel(l,"Волна "+I2S(lvlnum-lvlplus)+"."+I2S(spawnnum))
+        LeaderboardSetLabel(l,"Волна "+I2S(lvlnum-GameConfig.current.startLevelShift)+"."+I2S(spawnnum))
     else
-        LeaderboardSetLabel(l,"Волна: "+I2S(lvlnum-MAXLVL[LOC-1]+1)+"/" + I2S(MAXLVL[LOC] - MAXLVL[LOC-1]) + "\nСпавн: " + I2S(spawnnum) + "/" + I2S(spawnnummax-subwave_sub))
+        LeaderboardSetLabel(l,"Волна: "+I2S(lvlnum-MAXLVL[LOC-1]+1)+"/" + I2S(MAXLVL[LOC] - MAXLVL[LOC-1]) + "\nСпавн: " + I2S(spawnnum) + "/" + I2S(GameConfig.current.spawnSubwavesNumber-subwave_sub))
     endif
     loop
         exitwhen pause==true or i==nextresp

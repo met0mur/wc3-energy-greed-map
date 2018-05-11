@@ -54,7 +54,7 @@ i=GetRandomInt(0,nextcft-1)
         ord(u)        
         cfta[i].destroy()
         cfta[i]=cfta[nextcft]
-        if nextcft>spawnperiod/0.25
+        if nextcft> GameConfig.current.spawnSubwavesTimeSec /0.25
             go()
         endif
         u=null

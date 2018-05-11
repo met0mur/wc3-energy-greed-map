@@ -1,7 +1,6 @@
 library upgradeProgress uses general, partsStruct
 
 private real UPDATE_INTERVAL_SECONDS = 0.1; //update period in seconds
-real engmult=10 //множитель для определения максимального значения маны на время апгрейда
 
 //структура для инфы об улучшаемом юните на время наполнения маной
 struct UpgradeProgressStruct
@@ -55,7 +54,7 @@ struct UpgradeProgressStruct
 		if id=='acc1' or id=='acc2' or id=='acc3'
 		return 0.06
 		endif
-		return engmult
+		return I2R(GameConfig.current.upgradeCostMultiplier);
 	endmethod
 
 	static nothing initUpdgradeHandling (unit u) {

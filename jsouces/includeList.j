@@ -1,4 +1,5 @@
 include "jsouces/general.j";
+include "jsouces/GameConfig.j";
 include "jsouces/upgradeProgress.j";
 include "jsouces/manatower.j";
 include "jsouces/unitData.j";
