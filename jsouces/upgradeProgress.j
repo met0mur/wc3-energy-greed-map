@@ -59,14 +59,7 @@ struct UpgradeProgressStruct
 
 	static nothing initUpdgradeHandling (unit u) {
 		UnitDataStruct unitData = GetUnitUserData(u);
-		SetUnitVertexColorBJ( u, 100, 100, 100, 100 );
-		
-		/* tower set */
-		if (unitData.towerSet != 0) {
-			unitData.towerSet.destroy();
-		}
-		unitData.towerSet = partsStruct_checkAndCreate(u);
-		/* end tower set */
+		unitData.updateTowerSet();
 		
 		//для изначальных построек энергии не нужно
 		if (GetUnitTypeId(u)=='towe') {

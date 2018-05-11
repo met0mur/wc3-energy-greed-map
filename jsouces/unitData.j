@@ -52,6 +52,14 @@ TowerBaseConfig towerConfig;
 		return oldConf != conf;
 	}
 	
+	public nothing updateTowerSet () {
+		if (this.towerSet != 0) {
+			this.towerSet.destroy();
+		}
+		SetUnitVertexColorBJ( this.u, 100, 100, 100, 100 );
+		this.towerSet = partsStruct_checkAndCreate(this.u);
+	}
+	
 	public static UnitDataStruct getData (unit u) {
         UnitDataStruct data = GetUnitUserData(u);
         return data;
@@ -128,7 +136,8 @@ TowerBaseConfig towerConfig;
     endmethod
 
     static nothing handler_construct () { 
-        add(GetConstructingStructure(),pTOWER);
+        UnitDataStruct unitStruct = add(GetConstructingStructure(),pTOWER);
+		//unitStruct.updateTowerConfig();
     }
 
     static nothing onInit () {

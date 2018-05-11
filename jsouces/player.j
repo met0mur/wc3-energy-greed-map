@@ -113,23 +113,7 @@ static method onDeath takes nothing returns nothing
     t=null
 endmethod
 
-//какая то тут хуйня
 static method playerpointinit takes player p returns nothing
-    if Diff==0
-        if GetPlayerId(p)==0
-            playerpoint.x=0
-            playerpoint.y=2555
-        elseif GetPlayerId(p)==1
-            playerpoint.x=0
-            playerpoint.y=-2555
-        elseif GetPlayerId(p)==2
-            playerpoint.x=2555
-            playerpoint.y=0
-        elseif GetPlayerId(p)==3
-            playerpoint.x=-2555
-            playerpoint.y=0
-        endif
-    else
         if LOC==0
             playerpoint.x=0
             playerpoint.y=0
@@ -137,7 +121,6 @@ static method playerpointinit takes player p returns nothing
             playerpoint.x=0
             playerpoint.y=6777
         endif
-    endif
 endmethod
 
 method initPlayer takes nothing returns nothing //инициализация структуры игрока

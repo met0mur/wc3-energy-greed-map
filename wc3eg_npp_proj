@@ -10,6 +10,7 @@
         </Folder>
         <Folder name="towerConfs">
             <File name="jsouces\towerConfs\towerBaseConfig.j" />
+            <File name="jsouces\towerConfs\ascii.j" />
         </Folder>
         <Folder name="towerParts">
             <File name="jsouces\towerParts\partsConfig.j" />
@@ -24,7 +25,6 @@
             <File name="jsouces\towerVisual\slow.j" />
             <File name="jsouces\towerVisual\wall.j" />
         </Folder>
-        <File name="jsouces\ascii.j" />
         <File name="jsouces\constants.j" />
         <File name="jsouces\cristals.j" />
         <File name="jsouces\energyLinkView.j" />
@@ -42,5 +42,7 @@
         <File name="jsouces\unitData.j" />
         <File name="jsouces\unitRemove.j" />
         <File name="jsouces\upgradeProgress.j" />
+        <File name="jsouces\GameState.j" />
+        <File name="jsouces\GameConfig.j" />
     </Project>
 </NotepadPlus>

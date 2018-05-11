@@ -57,12 +57,7 @@ static method renu takes nothing returns nothing
                 m=GetRandomReal(0.5,1.2)
             endif
             if dsa[i].id=='bloc'
-                if Diff==0 and (IsDestructableDeadBJ(dsa[i].d) or dsa[i].d==null)
-                    RemoveDestructable(dsa[i].d)
-                    dsa[i].d=CreateDestructable(dsa[i].id,dsa[i].x,dsa[i].y,GetRandomReal(1,340),m,GetRandomInt(1,4))
-                elseif Diff!=0 
-                    RemoveDestructable(dsa[i].d)
-                endif
+                RemoveDestructable(dsa[i].d)
             elseif IsDestructableDeadBJ(dsa[i].d)
                 dsa[i].d=CreateDestructable(dsa[i].id,dsa[i].x,dsa[i].y,GetRandomReal(1,340),m,GetRandomInt(1,4))
                 TriggerRegisterDeathEvent(dsa[i].t, dsa[i].d)

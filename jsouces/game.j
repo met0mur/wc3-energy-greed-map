@@ -1,12 +1,11 @@
-library game initializer init uses gameConfig, creeps, upgradeProgress
+library game initializer init uses gameConfig, creeps, upgradeProgress, manatower
 
-	integer Diff=0
 	integer LOC=0
 	boolean restarting=false
 	string displayedTextOnRestart=""
 
 	nothing initdiff() {
-		GameConfig.initOnGameStart(Diff, LOC, activeplayer);
+		GameConfig.initOnGameStart(DifficultyLevel_Ease, LOC, activeplayer);
 		
 		lvlnum=1+GameConfig.current.startLevelShift
 		spawnnum=0
@@ -41,10 +40,16 @@ library game initializer init uses gameConfig, creeps, upgradeProgress
 	////////////////
 	////////////////////////////////////////////////////////////////////////
 
-	nothing addlink(unit a, unit b) {
+	private nothing addlinkd(unit a, unit b) {
 		ManaLinkStruct.addlink(a,b);
 	}
 
+	private unit CreateUnitd(player a, integer b, real c, real d, real e) {
+		unit x = CreateUnit(a, b, c, d, e)
+		UnitDataStruct unitData = UnitDataStruct.add(x,pTOWER);
+		unitData.updateTowerSet();
+		return x;
+	}
 
 	private nothing initbase() {
 		player p=Player(11)
@@ -53,50 +58,50 @@ library game initializer init uses gameConfig, creeps, upgradeProgress
 		unit c
 		unit d
 		
-		if Diff!=0
-			a=CreateUnit(p,'tow2',90.,-2004.,270.)
-			b=CreateUnit(p,'tow2',90.,-1900.,270.)
-			addlink(a,b)
-			a=CreateUnit(p,'tow2',90.,-1806.,270.)
-			addlink(b,a)
-			c=CreateUnit(p,'tow3',0.,-1366.,270.)
-			addlink(a,c)
-			a=CreateUnit(p,'towe',-90.,-2004.,270.)
-			b=CreateUnit(p,'tow2',-90.,-1900.,270.)
-			addlink(a,b)
-			a=CreateUnit(p,'tow2',-90.,-1806.,270.)
-			addlink(b,a)
-			addlink(a,c)
-			b=CreateUnit(p,'tow3',0.,-936.,270.)
-			addlink(c,b)
-			a=CreateUnit(p,'tow3',-100.,-300.,270.)//последняя перед развилкой
+		if (GameConfig.current.difficultyLevel != DifficultyLevel_Hard) {
+			a=CreateUnitd(p,'tow2',90.,-2004.,270.)
+			b=CreateUnitd(p,'tow2',90.,-1900.,270.)
+			addlinkd(a,b)
+			a=CreateUnitd(p,'tow2',90.,-1806.,270.)
+			addlinkd(b,a)
+			c=CreateUnitd(p,'tow3',0.,-1366.,270.)
+			addlinkd(a,c)
+			a=CreateUnitd(p,'towe',-90.,-2004.,270.)
+			b=CreateUnitd(p,'tow2',-90.,-1900.,270.)
+			addlinkd(a,b)
+			a=CreateUnitd(p,'tow2',-90.,-1806.,270.)
+			addlinkd(b,a)
+			addlinkd(a,c)
+			b=CreateUnitd(p,'tow3',0.,-936.,270.)
+			addlinkd(c,b)
+			a=CreateUnitd(p,'tow3',-100.,-300.,270.)//последняя перед развилкой
 			UnitAddAbility(a,'Ane2')
-			addlink(b,a)
-			b=CreateUnit(p,'tow3',255.,0.,270.)
+			addlinkd(b,a)
+			b=CreateUnitd(p,'tow3',255.,0.,270.)
 			UnitAddAbility(b,'Ane2')
-			addlink(a,b)
-			c=CreateUnit(p,'tow3',-255.,0.,270.)
+			addlinkd(a,b)
+			c=CreateUnitd(p,'tow3',-255.,0.,270.)
 			UnitAddAbility(c,'Ane2')
-			addlink(a,c)
-			a=CreateUnit(p,'gi01',-350.,-350.,270.)
-			addlink(c,a)
-			a=CreateUnit(p,'gi01',350.,-350.,270.)
-			addlink(b,a)
-			a=CreateUnit(p,'gi01',-350.,350.,270.)
-			addlink(c,a)
-			a=CreateUnit(p,'gi01',350.,350.,270.)
-			addlink(b,a)
+			addlinkd(a,c)
+			a=CreateUnitd(p,'gi01',-350.,-350.,270.)
+			addlinkd(c,a)
+			a=CreateUnitd(p,'gi01',350.,-350.,270.)
+			addlinkd(b,a)
+			a=CreateUnitd(p,'gi01',-350.,350.,270.)
+			addlinkd(c,a)
+			a=CreateUnitd(p,'gi01',350.,350.,270.)
+			addlinkd(b,a)
 			IssueImmediateOrder(a,"healon")
 			a=CreateUnit(p,healL1,-450.,0.,270.)
-			addlink(c,a)
+			addlinkd(c,a)
 			IssueImmediateOrder(a,"healon")
 			a=CreateUnit(p,healL1, 450.,0.,270.)
-			addlink(b,a)
+			addlinkd(b,a)
 			IssueImmediateOrder(a,"healon")
 			a=CreateUnit(p,'pr01',0.,0.,270.)
 			prima.Add(a,150)
 			IssueImmediateOrder(a,"webon")
-		endif
+		}
 
 		a=null
 		b=null
@@ -111,10 +116,10 @@ library game initializer init uses gameConfig, creeps, upgradeProgress
 		unit c
 		unit d
 		
-		if Diff!=0
+		if (GameConfig.current.difficultyLevel != DifficultyLevel_Hard) {
 			a=CreateUnit(p,'gamm',-300.,7200.,270.)
 			b=CreateUnit(p,'gamm',180.,7200.,270.)
-		endif
+		}
 
 		a=null
 		b=null
@@ -175,7 +180,6 @@ library game initializer init uses gameConfig, creeps, upgradeProgress
 		SetAmbientDaySound( "AshenvaleDay" )
 		SetAmbientNightSound( "AshenvaleDay" )
 		call VolumeGroupSetVolumeBJ( SOUND_VOLUMEGROUP_MUSIC, 1.00 )
-		Diff=1
 		displayedTextOnRestart=GetLocalizedString("TRIGSTR_2")
 		restartgame()
 	}

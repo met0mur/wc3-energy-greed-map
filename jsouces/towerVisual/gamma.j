@@ -37,7 +37,7 @@ integer time=50
                     codelig="RAYS"
                 endif
             endif
-            if (GetOwningPlayer(u) == GetLocalPlayer()) { BJDebugMsg(R2S(dmg) + "tc" + I2S(data.towerConfig))};
+            BJDebugMsg(R2S(dmg) + "tc" + I2S(data.towerConfig));
             unit t=GetSpellTargetUnit()
             //Miss M=Miss.Create('roc1', u, 25, t)
             //M.ModDmg(20, ATTACK_TYPE_NORMAL, true, 200)
