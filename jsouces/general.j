@@ -1,6 +1,15 @@
 
 library general
 
+
+
+ define { 
+ int = integer 
+ bool = boolean 
+ void = nothing 
+ float = real
+ }
+
     boolean confirm(real a, real min, real max){
         if a>min and a<max
             return true

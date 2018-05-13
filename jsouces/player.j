@@ -116,7 +116,7 @@ endmethod
 static method playerpointinit takes player p returns nothing
         if LOC==0
             playerpoint.x=0
-            playerpoint.y=0
+            playerpoint.y=100
         elseif LOC==1
             playerpoint.x=0
             playerpoint.y=6777
@@ -142,8 +142,10 @@ method initPlayer takes nothing returns nothing //инициализация с�
     TriggerAddAction( t, function gamepr.onDeath )
 endmethod
 
-static method gameStart takes nothing returns nothing //инициализация всех игроков перед началом игры
-    integer i=0
+public static method gameStart takes nothing returns nothing //инициализация всех игроков перед началом игры
+	print("players initialize");
+
+   integer i=0
     gamepr gp
     loop
         exitwhen i==slots
@@ -173,19 +175,11 @@ static method gameStart takes nothing returns nothing //инициализаци
     endloop
     
     
+    gameState.onActivePlayersUpdated.dispatch();
     
-    initdiff()
-    print("gameStart Called")
-    
-    falseStartCountDown = falseStartCountDownInitialSec / GameConfig.current.spawnSubwavesTimeSec;
-    TimerStart(spawner,GameConfig.current.spawnSubwavesTimeSec,true,function GO)
+	
 endmethod
 
-static method win takes nothing returns nothing
-    displayedTextOnRestart="WIN!"
-    restartgame()
-    //govote()
-endmethod
 
 static method gpunits takes nothing returns nothing
     unit u=GetConstructedStructure()
@@ -200,10 +194,6 @@ static method gpunits takes nothing returns nothing
 
 endmethod
 
-static method onInit takes nothing returns nothing
-    //gamepr.gameStart()
-endmethod
-
 endstruct
 
 pair playerpoint
@@ -214,7 +204,8 @@ private function init takes nothing returns nothing
     TriggerRegisterAnyUnitEventBJ( tr, EVENT_PLAYER_UNIT_DEATH )
     TriggerAddAction( tr, function gamepr.gpunits)
     playerpoint=pair.create()
-    gamepr.gameStart()
+	
+	//gamepr.gameStart()
 endfunction
 
 endlibrary

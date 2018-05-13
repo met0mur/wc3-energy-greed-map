@@ -118,7 +118,7 @@ TowerBaseConfig towerConfig;
     endmethod
 	
     static method add takes unit u, integer t returns UnitDataStruct
-        local UnitDataStruct p=UnitDataStruct.create()
+		local UnitDataStruct p=UnitDataStruct.create()
         if t==0 then
             set p.ptype=UnitDataStruct.get(u)
         else

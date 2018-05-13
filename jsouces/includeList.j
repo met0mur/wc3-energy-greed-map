@@ -1,5 +1,9 @@
 include "jsouces/general.j";
+include "jsouces/misc/Signal.j";
+
 include "jsouces/GameConfig.j";
+include "jsouces/GameStateStruct.j";
+
 include "jsouces/upgradeProgress.j";
 include "jsouces/manatower.j";
 include "jsouces/unitData.j";
@@ -10,12 +14,14 @@ include "jsouces/towerConfs/ascii.j";
 include "jsouces/towerConfs/towerBaseConfig.j";
 
 include "jsouces/player.j";
+include "jsouces/InitialBuildings.j";
 include "jsouces/game.j";
 include "jsouces/cristals.j";
 
 include "jsouces/creeps/mind.j";
 include "jsouces/creeps/spawner.j";
 include "jsouces/creeps/creeps.j";
+include "jsouces/creeps/WavesConfig.j";
 
 include "jsouces/energyLinkView.j";
 include "jsouces/towerVisual/wall.j";

@@ -13,13 +13,132 @@ library asciiTable initializer init uses general {
         }
 		
 		static integer getByChar (string char) {
-            integer i = 70;
-			whilenot (i-- == 0) {
-				ascii data = values[i];
-				if (data != 0 && data.char == char) {
-					return data.numb;
-				}
+            if (char == "0") {
+				return 48;
+			} elseif (char == "1") {
+				return 49;
+			} elseif (char == "2") {
+				return 50;
+			} elseif (char == "3") {
+				return 51;
+			} elseif (char == "4") {
+				return 52;
+			} elseif (char == "5") {
+				return 53;
+			} elseif (char == "6") {
+				return 54;
+			} elseif (char == "7") {
+				return 55;
+			} elseif (char == "8") {
+				return 56;
+			} elseif (char == "9") {
+				return 57;
+			} elseif (char == "A") {
+				return 65;
+			} elseif (char == "B") {
+				return 66;
+			} elseif (char == "C") {
+				return 67;
+			} elseif (char == "D") {
+				return 68;
+			} elseif (char == "E") {
+				return 69;
+			} elseif (char == "F") {
+				return 70;
+			} elseif (char == "G") {
+				return 71;
+			} elseif (char == "H") {
+				return 72;
+			} elseif (char == "I") {
+				return 73;
+			} elseif (char == "J") {
+				return 74;
+			} elseif (char == "K") {
+				return 75;
+			} elseif (char == "L") {
+				return 76;
+			} elseif (char == "M") {
+				return 77;
+			} elseif (char == "N") {
+				return 78;
+			} elseif (char == "O") {
+				return 79;
+			} elseif (char == "P") {
+				return 80;
+			} elseif (char == "Q") {
+				return 81;
+			} elseif (char == "R") {
+				return 82;
+			} elseif (char == "S") {
+				return 83;
+			} elseif (char == "T") {
+				return 84;
+			} elseif (char == "U") {
+				return 85;
+			} elseif (char == "V") {
+				return 86;
+			} elseif (char == "W") {
+				return 87;
+			} elseif (char == "X") {
+				return 88;
+			} elseif (char == "W") {
+				return 89;
+			} elseif (char == "Z") {
+				return 90;
+			} elseif (char == "a") {
+				return 97;
+			} elseif (char == "b") {
+				return 98;
+			} elseif (char == "c") {
+				return 99;
+			} elseif (char == "d") {
+				return 100;
+			} elseif (char == "e") {
+				return 101;
+			} elseif (char == "f") {
+				return 102;
+			} elseif (char == "g") {
+				return 103;
+			} elseif (char == "h") {
+				return 104;
+			} elseif (char == "i") {
+				return 105;
+			} elseif (char == "j") {
+				return 106;
+			} elseif (char == "k") {
+				return 107;
+			} elseif (char == "l") {
+				return 108;
+			} elseif (char == "m") {
+				return 109;
+			} elseif (char == "n") {
+				return 110;
+			} elseif (char == "o") {
+				return 111;
+			} elseif (char == "p") {
+				return 112;
+			} elseif (char == "q") {
+				return 113;
+			} elseif (char == "r") {
+				return 114;
+			} elseif (char == "s") {
+				return 115;
+			} elseif (char == "t") {
+				return 116;
+			} elseif (char == "u") {
+				return 117;
+			} elseif (char == "v") {
+				return 118;
+			} elseif (char == "w") {
+				return 119;
+			} elseif (char == "x") {
+				return 120;
+			} elseif (char == "w") {
+				return 121;
+			} elseif (char == "z") {
+				return 122;
 			}
+			
 			return 0;
         }
 		

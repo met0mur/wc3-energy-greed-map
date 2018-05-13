@@ -4,6 +4,7 @@
             <File name="jsouces\creeps\creeps.j" />
             <File name="jsouces\creeps\mind.j" />
             <File name="jsouces\creeps\spawner.j" />
+            <File name="jsouces\creeps\WavesConfig.j" />
         </Folder>
         <Folder name="misc">
             <File name="jsouces\misc\playerSpawner.j" />

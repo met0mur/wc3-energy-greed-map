@@ -1,6 +1,6 @@
-library gameConfig initializer init {
+library gameConfig initializer init uses general {
 	
-	enum { DifficultyLevel_Ease, DifficultyLevel_Medium, DifficultyLevel_Hard }
+	enum { DifficultyLevel_Ease, DifficultyLevel_Medium, DifficultyLevel_Hard, DifficultyLevel_DevFast }
 	enum (locenum) { Location_Classic, Location_CastleHall }
 	
 	/*
@@ -25,6 +25,7 @@ library gameConfig initializer init {
 			копируются предопределённые конфиги и модифицируются по обстановке
 		*/
 		public static nothing initOnGameStart(integer difficultyLevel, integer currentLocation, integer activePlayers) {
+			print("config initialize");
 			GameConfig newConf;
 			
 			if (difficultyLevel == DifficultyLevel_Ease) {
@@ -33,6 +34,13 @@ library gameConfig initializer init {
 				newConf = GameConfig.medium.clone();
 			} elseif (difficultyLevel == DifficultyLevel_Hard) {
 				newConf = GameConfig.hard.clone();
+			}elseif (difficultyLevel == DifficultyLevel_DevFast) {
+				newConf = GameConfig.ease.clone();
+				newConf.spawnSubwavesNumber = 2;
+				newConf.spawnSubwavesTimeSec = 2;
+				newConf.upgradeCostMultiplier = 3;
+				newConf.creepsMaxNumber = 1000;
+				newConf.difficultyLevel = DifficultyLevel_DevFast;
 			}
 			
 			newConf.currentLocation = currentLocation;
@@ -44,6 +52,8 @@ library gameConfig initializer init {
 			newConf.upgradeCostMultiplier -= activePlayers / 2;
 			
 			GameConfig.current = newConf;
+			
+			gameState.onGameConfigUpdated.dispatch();
 		}
 		
 		public GameConfig clone () {
