@@ -27,7 +27,7 @@ library game initializer init uses gameConfig, creeps, upgradeProgress, manatowe
 		g=null
 	}
 
-	nothing restartgame() {
+	private nothing restartgame() {
 		gameState.reset();
 
 		if restarting==true {
@@ -48,9 +48,8 @@ library game initializer init uses gameConfig, creeps, upgradeProgress, manatowe
 		svod.clear();
 		clearMap();
 		cftstruct.onRest();
-		crist.recirculate()  //Обновление кристаллов
-				
-		gamepr.gameStart()
+		crist.recirculate();  //Обновление кристаллов
+		gamepr.gameStart();
 		
 		GameConfig.initOnGameStart(nextDifficultyLevel, LOC, activeplayer);
 		CreepsController.prepareToStart(GameConfig.current);
@@ -87,7 +86,9 @@ library game initializer init uses gameConfig, creeps, upgradeProgress, manatowe
 		call VolumeGroupSetVolumeBJ( SOUND_VOLUMEGROUP_MUSIC, 1.00 )
 		displayedTextOnRestart=GetLocalizedString("TRIGSTR_2")
 		TriggerSleepAction(0.4)
-		restartgame()
+		
+		gameState.requestGameRestart.add(restartgame.name);
+		gameState.requestGameRestart.dispatch();
 	}
 	
 

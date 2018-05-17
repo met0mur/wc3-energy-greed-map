@@ -7,8 +7,6 @@
 	integer falseStartCountDown;
 
 	timer spawner
-	integer currentWaveNumber=1
-	integer currentSubwaveNumber=0
 	boolean pause=false
 	integer creepsnum=0
 	group creepsgro
@@ -46,8 +44,8 @@
 				currentWaves = waves_castle_hall;
 			}
 			
-			currentWaveNumber=GameConfig.current.startLevelShift;
-			currentSubwaveNumber=0;
+			gameState.currentWaveNumber=GameConfig.current.startLevelShift;
+			gameState.currentSubwaveNumber=0;
 			
 			PauseTimer(spawner)
 			
@@ -165,27 +163,29 @@
 		falseStartCountDown--;
 		if (falseStartCountDown > 0) {
 			trace("Creeps: false start");
+			gameState.waveFailStartReason = WaveFailStartReason_Timeout;
+			gameState.onWaveFailStart.dispatch();
 			return;
 		}
 		
 		if (creepsnum>GameConfig.current.creepsMaxNumber) {
 			trace("Creeps: too much");
-			u=null
+			gameState.waveFailStartReason = WaveFailStartReason_TooMuch;
+			gameState.onWaveFailStart.dispatch();
 			return
 		}
 		
 		CreepWavePack pack = CreepsController.currentWaves;
 		
-		if (currentWaveNumber >= pack.listCounter) {
-			currentWaveNumber=0
+		if (gameState.currentWaveNumber >= pack.listCounter) {
+			gameState.currentWaveNumber=0
 			displayedTextOnRestart="WIN!"
-			ExecuteFunc("restartgame")
-			//restartgame();
+			gameState.requestGameRestart.dispatch();
 			LeaderboardSetLabel(l,"WIN!")
 			return;
 		}
 		
-		CreepWave wave = pack.list[currentWaveNumber];
+		CreepWave wave = pack.list[gameState.currentWaveNumber];
 		
 		local integer i=0
 		local integer n=0
@@ -198,18 +198,28 @@
 			maxSubwaves = wave.subwavesNum;
 		}
 		
-		if (currentSubwaveNumber==maxSubwaves) {
+		if (gameState.currentSubwaveNumber==maxSubwaves) {
 			if (not(wave.waitAllCreepsAreDying) or (wave.waitAllCreepsAreDying and creepsnum==0)) {
-				currentWaveNumber++;
-				currentSubwaveNumber=1
+				gameState.currentWaveNumber++;
+				gameState.currentSubwaveNumber=0;
+
 			} else {
 				return
 			}
 		} else {
-			currentSubwaveNumber++;
+			gameState.currentSubwaveNumber++;
 		}
 		
-		LeaderboardSetLabel(l,"Волна "+I2S(currentWaveNumber)+"/"+I2S(pack.listCounter)+"\nОтряд "+I2S(currentSubwaveNumber)+"/"+I2S(maxSubwaves));
+		gameState.maxWaveNumber = pack.listCounter;
+		gameState.currentWaveMaxSubwaveNumber = maxSubwaves;
+
+		if (gameState.currentSubwaveNumber == 0) {
+			gameState.onWaveStarted.dispatch();
+		}
+		
+		gameState.onSubwaveStarted.dispatch();
+		
+		LeaderboardSetLabel(l,"Волна "+I2S(gameState.currentWaveNumber)+"/"+I2S(pack.listCounter)+"\nОтряд "+I2S(gameState.currentSubwaveNumber)+"/"+I2S(maxSubwaves));
 		
 		loop
 			exitwhen pause==true or i==nextresp

@@ -88,7 +88,7 @@ static method compareLost takes nothing returns nothing
         //print1("L"+B2S(l))
         if l
             displayedTextOnRestart=GetLocalizedString("TRIGSTR_8")
-            restartgame()
+            gameState.requestGameRestart.dispatch();
         endif
 endmethod
 
@@ -183,7 +183,6 @@ endmethod
 
 static method gpunits takes nothing returns nothing
     unit u=GetConstructedStructure()
-        //print("333333333333333333333333333333333333")
     if u!=null and GetUnitTypeId(u)!='wisp' and GetUnitTypeId(u)!='acc1'
         GroupAddUnit(gpa[GetPlayerId(GetTriggerPlayer())].units,u)
     else
