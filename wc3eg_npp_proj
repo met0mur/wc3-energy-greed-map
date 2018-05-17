@@ -45,5 +45,6 @@
         <File name="jsouces\upgradeProgress.j" />
         <File name="jsouces\GameState.j" />
         <File name="jsouces\GameConfig.j" />
+        <File name="jsouces\InitialBuildings.j" />
     </Project>
 </NotepadPlus>
