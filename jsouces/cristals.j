@@ -1,9 +1,9 @@
 library cristals initializer init uses general, radiusIndicator
 globals
-private constant integer mincrist=90000
-private constant integer maxcrist=100000
+private constant integer mincrist=190000
+private constant integer maxcrist=300000
 
-private constant real rad=1.5
+private constant real rad=3.5
 private constant real maxrad=60
 private constant real radius=300
 private constant integer cris_id='n004'

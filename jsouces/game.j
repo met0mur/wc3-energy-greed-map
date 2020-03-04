@@ -4,7 +4,7 @@ library game initializer init uses gameConfig, creeps, upgradeProgress, manatowe
 	boolean restarting=false
 	string displayedTextOnRestart=""
 	
-	int nextDifficultyLevel = DifficultyLevel_DevFast;
+	int nextDifficultyLevel = DifficultyLevel_Ease;
 
 	private nothing clearMap() {
 		group g=CreateGroup()

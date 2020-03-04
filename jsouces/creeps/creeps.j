@@ -3,7 +3,7 @@
 	globals
 	leaderboard l
 
-	integer falseStartCountDownInitialSec = 10;
+	integer falseStartCountDownInitialSec = 60;
 	integer falseStartCountDown;
 
 	timer spawner
@@ -219,7 +219,7 @@
 		
 		gameState.onSubwaveStarted.dispatch();
 		
-		LeaderboardSetLabel(l,"Волна "+I2S(gameState.currentWaveNumber)+"/"+I2S(pack.listCounter)+"\nОтряд "+I2S(gameState.currentSubwaveNumber)+"/"+I2S(maxSubwaves));
+		LeaderboardSetLabel(l,"Волна "+I2S(gameState.currentWaveNumber)+"/"+I2S(pack.listCounter)+"\nОтряд "+I2S(gameState.currentSubwaveNumber)+"/"+I2S(maxSubwaves) + "\nNUM: " + I2S(creepsmaxnum));
 		
 		loop
 			exitwhen pause==true or i==nextresp
@@ -258,8 +258,7 @@
 	}
 	
 	private function ifdie takes nothing returns nothing
-		local unit u=GetTriggerUnit()
-		UnitDataStruct.rem(u)
+		local unit u=GetTriggerUnit();
 		GroupRemoveUnit(creepsgro,u)
 		set creepsnum=creepsnum-1
 		removeunit(u,4)

@@ -18,11 +18,7 @@ for(int i: map.script.triggers) {
     code += map.script.triggers[i].code + "\n";
 }
 
-echoln(code);
-
 writeString(openFileWrite(@map + "_embeddedSources.j", false), code);
-
-//exportFile(map,"war3map.wct", "embeddedSources.j");
 ///////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////
@@ -303,7 +299,7 @@ endfunction
 
 function Trig_selfkill_Actions takes nothing returns nothing
     unit u=GetTriggerUnit()
-    UpgradeProgressStruct.onSelfDestroy(u)
+    //UpgradeProgressStruct.onSelfDestroy(u)
     KillUnit( u )
     u=null
 endfunction

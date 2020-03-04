@@ -286,7 +286,7 @@ endfunction
 nothing trace(string s) {
 local integer i = 0
     loop
-        call DisplayTimedTextToPlayer(Player(i),0,0,10,s)
+        call DisplayTimedTextToPlayer(Player(i),0,0,10,"DEV: "+s)
         set i = i + 1
         exitwhen i == bj_MAX_PLAYERS
     endloop

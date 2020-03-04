@@ -100,7 +100,7 @@ struct ManaLinkStruct
         //Выделение.
         //если юнит передатчик
         //todo move
-        if (UnitDataStruct.get(to)==pTRANS and GetOwningPlayer(from)==GetOwningPlayer(to) and toUserData.select) {
+        if (UnitDataStruct.getUnitTypeMagicShit(to)==pTRANS and GetOwningPlayer(from)==GetOwningPlayer(to) and toUserData.select) {
             SelectUnitForPlayerSingle(to,GetOwningPlayer(from));
         }
     }

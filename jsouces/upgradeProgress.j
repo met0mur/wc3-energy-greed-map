@@ -202,7 +202,6 @@ struct UpgradeProgressStruct
 		data.updateTowerConfig();
 		
 		progress.destroyInstance();
-		//UnitDataStruct.rem(u)
 		ManaLinkStruct.bug(u)
 		u=null;
 	}
