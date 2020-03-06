@@ -1,11 +1,26 @@
 library WavesConfig initializer wavesConfigInit uses creeps {
 	
 	private void wavesConfigInit() {
-	
-			CreepWavePack pack = CreepWavePack.create();
-		
-		CreepWave wave;
+    
+    
+        CreepWave wave;
+        CreepWavePack pack = CreepWavePack.create();
+        
+		wave = pack.createNextWave();
 
+//setinV2 ( integer id, integer Type, integer num, int hp, real scale, pair color)
+		wave.setinV2('lv34',BASE,1, 10, 0.5, 0)
+		wave.subwavesNum=1
+        wave.waitAllCreepsAreDying = true;
+        
+		wave.setinV2('lv34',BASE,1, 2000, 1, 0)
+		wave.subwavesNum=1
+        wave.waitAllCreepsAreDying = true;
+        
+        CreepsController.waves_generated = pack;
+        
+		pack = CreepWavePack.create();	
+		
 		wave = pack.createNextWave();
 
 		wave.setin('lv11',ALL,1)
@@ -115,6 +130,7 @@ library WavesConfig initializer wavesConfigInit uses creeps {
 		wave.setin('lv32',ALL,2)
 		wave.setin('lv34',BASE,1)
 		wave.setin('lv31',SUPPORT,2)
+        wave.waitAllCreepsAreDying = true
 
 		CreepsController.waves_classic = pack;
 		

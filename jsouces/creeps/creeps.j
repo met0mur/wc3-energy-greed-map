@@ -3,7 +3,7 @@
 	globals
 	leaderboard l
 
-	integer falseStartCountDownInitialSec = 60;
+	integer falseStartCountDownInitialSec = 5;
 	integer falseStartCountDown;
 
 	timer spawner
@@ -32,6 +32,7 @@
 	endglobals
 	
 	struct CreepsController {
+		public static CreepWavePack waves_generated;
 		public static CreepWavePack waves_classic;
 		public static CreepWavePack waves_castle_hall;
 		
@@ -39,7 +40,8 @@
 		
 		public static void prepareToStart (GameConfig gameConfig) {
 			if (gameConfig.currentLocation == Location_Classic) {
-				currentWaves = waves_classic;
+				//currentWaves = waves_classic;
+				currentWaves = waves_generated;
 			} elseif (gameConfig.currentLocation == Location_CastleHall) {
 				currentWaves = waves_castle_hall;
 			}
@@ -148,6 +150,22 @@
 				this.subc=c
 			}
 		}
+        
+		public void setinV2 ( integer id, integer Type, integer num, int hp, real scale, pair color) {
+			CreepSpawnPack c=CreepSpawnPack.create()
+			c.id=id
+			c.Type=Type
+			c.num=num
+			c.hp=hp
+			c.scale=scale
+			if (Type==ALL) {
+				this.allc=c
+			} elseif (Type==BASE) {
+				this.basec=c
+			} elseif (Type==SUPPORT) {
+				this.subc=c
+			}
+		}
 	}
 
 	struct CreepSpawnPack {
@@ -155,6 +173,9 @@
 		public integer lvl
 		public integer Type
 		public integer num
+		public integer hp
+		public real scale
+        public pair color
 	}
 	
 
@@ -228,21 +249,21 @@
 				set n=0
 				loop
 					exitwhen n==wave.allc.num 
-					CreateUnitTime(creepsplayer,wave.allc.id,p.p.x,p.p.y)
+					CreateUnitTimeV2(creepsplayer,wave.allc.id,p.p.x,p.p.y,wave.allc)
 					set n=n+1
 				endloop
 				if p.subType==BASE then
 					set n=0
 					loop
 						exitwhen n==wave.basec.num
-						CreateUnitTime(creepsplayer,wave.basec.id,p.p.x,p.p.y)
+						CreateUnitTimeV2(creepsplayer,wave.basec.id,p.p.x,p.p.y,wave.basec)
 						set n=n+1
 					endloop
 				elseif p.subType==SUPPORT then
 						set n=0
 					loop
 						exitwhen n==wave.subc.num
-						CreateUnitTime(creepsplayer,wave.subc.id,p.p.x,p.p.y)
+						CreateUnitTimeV2(creepsplayer,wave.subc.id,p.p.x,p.p.y,wave.subc)
 						set n=n+1
 					endloop
 				endif

@@ -226,7 +226,7 @@ endfunction
 
 function MaxStateModifierID takes unitstate u returns integer
    if u == UNIT_STATE_MAX_LIFE then
-      return 'A000'
+      return 'Lmod'
    elseif u == UNIT_STATE_MAX_MANA then
       return 'setm'
    endif
@@ -291,6 +291,12 @@ local integer i = 0
         exitwhen i == bj_MAX_PLAYERS
     endloop
 }
+
+function setmaxhp takes unit whichUnit, integer val returns nothing
+    SetUnitMaxState(whichUnit, UNIT_STATE_MAX_LIFE,val)
+endfunction
+
+
 nothing print(string s) {BJDebugMsg(s)}
 nothing print1(string s) {
     local integer i = 0

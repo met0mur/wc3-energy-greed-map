@@ -25,7 +25,7 @@ library gameConfig initializer init uses general {
 			копируются предопределённые конфиги и модифицируются по обстановке
 		*/
 		public static nothing initOnGameStart(integer difficultyLevel, integer currentLocation, integer activePlayers) {
-			print("config initialize");
+			trace("config initialize");
 			GameConfig newConf;
 			
 			if (difficultyLevel == DifficultyLevel_Ease) {
@@ -98,6 +98,7 @@ library gameConfig initializer init uses general {
 	
 	private nothing init() {
 		GameConfig.setup();
+        //Cheat("War3errMsg: MAP INIT")
 	}
 	
 }

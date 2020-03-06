@@ -47,7 +47,7 @@ library game initializer init uses gameConfig, creeps, upgradeProgress, manatowe
 		destsave.renu();
 		svod.clear();
 		clearMap();
-		cftstruct.onRest();
+		CreepCreationQueueStruct.onRest();
 		crist.recirculate();  //Обновление кристаллов
 		gamepr.gameStart();
 		
