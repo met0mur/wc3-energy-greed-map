@@ -1,3 +1,5 @@
+include "jsouces/Logger.j";
+
 include "jsouces/general.j";
 include "jsouces/misc/Signal.j";
 

@@ -6,18 +6,40 @@ library WavesConfig initializer wavesConfigInit uses creeps {
         CreepWave wave;
         CreepWavePack pack = CreepWavePack.create();
         
-		wave = pack.createNextWave();
+        integer i = 0;
+        
+        trace("Level Generating");
+        
+        array test = [10, 5, 3, 10, 1];
+        
+        whilenot (i++ == 40) {
+            int MPS = R2I(100 * i);
+            int DPS = MPS;
+            int waveTimeSec = 120;
+            int waveInterval = 10;
+            
+            trace("Level:" + I2S(i) + " MPS:" + I2S(MPS));
+            //wave = pack.createNextWave();
+            //wave.setinV2('lv11',  BASE,   1, 10,  0.5, pair.createSet(100, 30, 0));
+        }
 
-//setinV2 ( integer id, integer Type, integer num, int hp, real scale, pair color)
-		wave.setinV2('lv34',BASE,1, 10, 0.5, 0)
+
+        //setinV2 ( integer id, integer Type, integer num, int hp, real scale, pair color)
+		wave.setinV2('lv11',    BASE,   1, 10,  0.5, pair.createSet(100, 30, 0));
 		wave.subwavesNum=1
         wave.waitAllCreepsAreDying = true;
         
-		wave.setinV2('lv34',BASE,1, 2000, 1, 0)
+        wave = pack.createNextWave();
+        
+		wave.setinV2('lv11',    BASE,   1, 2000, 1,     0)
 		wave.subwavesNum=1
         wave.waitAllCreepsAreDying = true;
         
         CreepsController.waves_generated = pack;
+        
+        ///////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////
         
 		pack = CreepWavePack.create();	
 		

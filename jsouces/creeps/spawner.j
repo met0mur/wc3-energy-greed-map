@@ -66,7 +66,14 @@ struct CreepCreationQueueStruct
             if (queueItem.pack.hp != 0) {
                 setmaxhp(u, queueItem.pack.hp);
             }
-            //SetUnitScale(u, 1, 2, 3);
+            if (queueItem.pack.scale != 0) {
+                SetUnitScale(u, queueItem.pack.scale, queueItem.pack.scale, queueItem.pack.scale);
+            }
+            if (queueItem.pack.color != 0) {
+                trace("color_____");
+                SetUnitVertexColorBJ( u, queueItem.pack.color.x, queueItem.pack.color.y, queueItem.pack.color.z, 0 );
+            }
+            
             ord_next_creep(u);        
             queueItem.destroy();
             cfta[i]=cfta[nextcft]

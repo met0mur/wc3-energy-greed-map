@@ -110,6 +110,9 @@
 		endmethod
 	endstruct
 
+/////////////////////////////////////////////////////////////
+// набор волн
+/////////////////////////////////////////////////////////////
 	
 	struct CreepWavePack {
 		public int locationID;
@@ -128,6 +131,10 @@
 			this.listCounter++;
 		}
 	}
+	
+/////////////////////////////////////////////////////////////
+// одна волна
+/////////////////////////////////////////////////////////////
 	
 	struct CreepWave {
 		public CreepSpawnPack allc
@@ -158,6 +165,7 @@
 			c.num=num
 			c.hp=hp
 			c.scale=scale
+			c.color=color
 			if (Type==ALL) {
 				this.allc=c
 			} elseif (Type==BASE) {
@@ -167,17 +175,27 @@
 			}
 		}
 	}
-
+	
+/////////////////////////////////////////////////////////////
+// часть волны
+/////////////////////////////////////////////////////////////
+	
 	struct CreepSpawnPack {
 		public integer id
 		public integer lvl
 		public integer Type
 		public integer num
 		public integer hp
-		public real scale
+		public real scale = 0
+        //r g b
         public pair color
 	}
+
 	
+/////////////////////////////////////////////////////////////
+// static
+/////////////////////////////////////////////////////////////
+		
 
 	function GO takes nothing returns nothing
 		
@@ -222,13 +240,14 @@
 		if (gameState.currentSubwaveNumber==maxSubwaves) {
 			if (not(wave.waitAllCreepsAreDying) or (wave.waitAllCreepsAreDying and creepsnum==0)) {
 				gameState.currentWaveNumber++;
-				gameState.currentSubwaveNumber=0;
-
+				gameState.currentSubwaveNumber=1;
+                trace("Creeps: next wave");
 			} else {
 				return
 			}
 		} else {
 			gameState.currentSubwaveNumber++;
+            trace("Creeps: next subwave");
 		}
 		
 		gameState.maxWaveNumber = pack.listCounter;
@@ -240,7 +259,7 @@
 		
 		gameState.onSubwaveStarted.dispatch();
 		
-		LeaderboardSetLabel(l,"Волна "+I2S(gameState.currentWaveNumber)+"/"+I2S(pack.listCounter)+"\nОтряд "+I2S(gameState.currentSubwaveNumber)+"/"+I2S(maxSubwaves) + "\nNUM: " + I2S(creepsmaxnum));
+		LeaderboardSetLabel(l,"Волна "+I2S(gameState.currentWaveNumber + 1)+"/"+I2S(pack.listCounter)+"\nОтряд "+I2S(gameState.currentSubwaveNumber)+"/"+I2S(maxSubwaves) + "\nNUM: " + I2S(creepsnum));
 		
 		loop
 			exitwhen pause==true or i==nextresp

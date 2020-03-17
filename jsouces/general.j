@@ -124,43 +124,53 @@ struct vec
     
 
 struct pair 
-real x=0
-real y=0
-real z=0
-method fromunit takes unit u returns nothing
-set .x=GetUnitX(u)
-set .y=GetUnitY(u)
+    real x=0
+    real y=0
+    real z=0
+    method fromunit takes unit u returns nothing
+    set .x=GetUnitX(u)
+    set .y=GetUnitY(u)
 
-endmethod
-method past takes pair p returns nothing
-set .x=p.x
-set .y=p.y
-set .z=p.z
-endmethod
-method tounit takes unit u returns nothing
-SetUnitX(u,.x)
-SetUnitY(u,.y)
-endmethod
+    endmethod
 
-static method u2p takes unit u returns pair p
-local pair p=pair.create()
-set p.x=GetUnitX(u)
-set p.y=GetUnitY(u)
-p.z=GetUnitZ(u)
-return p
-endmethod
+    method past takes pair p returns nothing
+        set .x=p.x
+        set .y=p.y
+        set .z=p.z
+    endmethod
 
-method u2b takes unit u returns boolean
-    if GetUnitX(u)==.x and GetUnitY(u)==.y
-        return true
-    endif
-    return false
-endmethod
+    method tounit takes unit u returns nothing
+        SetUnitX(u,.x)
+        SetUnitY(u,.y)
+    endmethod
 
-method polar takes real dist, real angle returns nothing
-    .x = .x + dist * Cos(angle * bj_DEGTORAD)
-    .y = .y + dist * Sin(angle * bj_DEGTORAD)
-endmethod
+    static method u2p takes unit u returns pair p
+        local pair p=pair.create()
+        set p.x=GetUnitX(u)
+        set p.y=GetUnitY(u)
+        p.z=GetUnitZ(u)
+        return p
+    endmethod
+    
+    static method createSet takes real x, real y, real z returns pair p
+        local pair p=pair.create()
+        p.x = x;
+        p.y = y;
+        p.z = z;
+        return p
+    endmethod
+
+    method u2b takes unit u returns boolean
+        if GetUnitX(u)==.x and GetUnitY(u)==.y
+            return true
+        endif
+        return false
+    endmethod
+
+    method polar takes real dist, real angle returns nothing
+        .x = .x + dist * Cos(angle * bj_DEGTORAD)
+        .y = .y + dist * Sin(angle * bj_DEGTORAD)
+    endmethod
 
 endstruct
 
@@ -290,6 +300,8 @@ local integer i = 0
         set i = i + 1
         exitwhen i == bj_MAX_PLAYERS
     endloop
+    
+    LogAdd(s);
 }
 
 function setmaxhp takes unit whichUnit, integer val returns nothing
